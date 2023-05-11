@@ -1,0 +1,25 @@
+.menu{
+    display: inline;
+    width: 320px;
+    height: 100vh;
+    background: #fff;
+}
+
+.menu li{
+    list-style: none;
+}
+
+.menu li a{
+    display: flex;
+    padding: 15px 10px;
+    background: #fafafa;
+    color: #333;
+    border-radius: 5px;
+    margin: 10px 10px;
+    transition: .4s;
+}
+
+.menu li a:hover{
+    background: #096bff;
+    color: #fff;
+}
