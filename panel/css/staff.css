@@ -1,20 +1,65 @@
-form{
-    width: 400px;
+.formContainer{
+    width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-wrap: wrap;
 }
 
-form input, select, textarea{
-    width: 100%;
+.formLeft{
+    display: flex;
+    width: 58%;
+}
+
+.formLeftInput{
+    padding-left: 15px;
+}
+
+
+.formRight{
+    width: 40%;
+}
+
+.inputForm{
+    width: calc(100% - 28px);
     border: 1px solid #ddd;
-    padding: 10px;
-    margin: 10px 0 0 0;
+    padding: 14px;
+    margin: 0 0 10px 0;
     border-radius: 10px;
     background: #fff;
 }
 
+.select{
+    width: 100% !important;
+}
+
+.file{
+    display: none;
+}
+
+.filePhoto{
+    display: flex;
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    background: #f2f2f2;
+}
+
+.textarea{
+    resize: vertical;
+    height: 80px;
+}
+
 .submit{
+    width: 100%;
+    margin: 10px 0 0 0;
     color: #fff;
-    background: #0099ff;
+    background: #2C374D;
+    border: 1px solid #2C374D;
+    padding: 14px 28px;
+    transition: .2s;
+}
+
+.submit:hover{
+    background: none;
+    color: #2C374D;
 }

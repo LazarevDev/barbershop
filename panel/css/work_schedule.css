@@ -93,9 +93,21 @@ section{
     /* display: none; */
 }
 
+.labelActive{
+    background: #2C374D;
+    color: #fff;
+}
+
+.labelActive:hover{
+    background: #77AD9D !important;
+}
+
+.labelActive input:checked .labelActive{
+    background: #77AD9D !important;
+}
 
 .staffFormCheck label:hover{
-    background: #e4e4e4;
+    background: #77AD9D;
 }
 
 

@@ -64,25 +64,46 @@ if(isset($_POST['submit'])){
             </div>
 
             <div class="content">
-                <form action="" method="post">
-                    <input type="text" name="name" placeholder="Введите имя">
-                    <input type="text" name="login" placeholder="Введите логин">
+                <form action="" class="formContainer" method="post">
+                    <div class="formLeft">
+                        <div class="formLeftPhoto">
+                            <input class="file" type="file" id="filePhoto" name="photo">
+                            <label for="filePhoto" class="filePhoto"></label>
 
-                    <select name="specialization" id="">
-                        <option value="0">Младший барбер</option>
-                        <option value="1">Старший барбер</option>
-                        <option value="2">Администратор</option>
-                    </select>
+                            <input class="inputForm submit" type="submit" name="submit" value="Загрузить">
 
-                    <input type="text" name="telephone" placeholder="Введите телефон">
-                    <input type="email" name="email" placeholder="Введите email">
-                    <textarea name="description" placeholder="Введите описание"></textarea>
-                    <input type="text" name="salary" placeholder="Оклад">
-                    <input type="text" name="perecent" placeholder="Процент с услуг">
-                    <input type="file" name="photo">
-                    <input type="password" name="password" placeholder="Введите пароль">
-                    <input type="submit" name="submit" class="submit">
+                        </div>
+
+                        <div class="formLeftInput">
+                            <input class="inputForm input" type="text" name="name" placeholder="Введите имя">
+                            <input class="inputForm input" type="text" name="login" placeholder="Введите логин">
+                        
+                            <select class="inputForm select" name="specialization" id="">
+                                <option value="0">Младший барбер</option>
+                                <option value="1">Старший барбер</option>
+                                <option value="2">Администратор</option>
+                            </select>
+
+                            <textarea class="inputForm textarea" name="description" placeholder="Введите описание"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="formRight">
+                        <input class="inputForm input" type="text" name="telephone" placeholder="Введите телефон">
+                        <input class="inputForm input" type="email" name="email" placeholder="Введите email">
+                        <input class="inputForm input" type="text" name="salary" placeholder="Оклад">
+                        <input class="inputForm input" type="text" name="perecent" placeholder="Процент с услуг">
+                        <input class="inputForm input" type="password" name="password" placeholder="Введите пароль">
+                    </div>
                 </form>
+            </div>
+
+            <div class="sectionTitle">
+                <h2>Все сотрудники</h2>
+            </div>
+
+            <div class="content">
+
             </div>
         </section>
     </main>

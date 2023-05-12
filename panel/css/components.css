@@ -1,0 +1,24 @@
+main{
+    display: flex;
+}
+
+section{
+    width: calc(90% - 320px);
+    height: 100px;
+    padding: 0px 25px;
+}
+
+.sectionTitle h2{
+    font-size: 26px;
+    margin: 20px 0 0 0;
+    color: #2C374D;
+}
+
+
+.content{
+    background: #fff;
+    width: 100%;
+    padding: 25px;
+    margin: 25px 0 0 0;
+    border-radius: 10px;
+}
