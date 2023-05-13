@@ -1,23 +1,47 @@
-main{
+.formContent{
+    widows: 100%;
+}
+
+.formInput{
     display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
 }
 
-section{
-    width: calc(90% - 320px);
-    height: 100px;
-    padding: 10px 25px;
+.formInputLabel{
+    display: flex;
+    align-items: center;
+    padding: 0 20px 0 0;
 }
 
-.sectionTitle h2{
-    font-size: 24px;
-    color: #333;
+.formInputLabel p{
+
 }
 
+.formInputLabel input{
+    margin-left: 10px;
+    border: 1px solid #ddd;
+    width: 120px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.submit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #2C374D;
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 10px;
+}
 
 .contentTable{
     display: flex;
     justify-content: space-between;
     width: 100%;
+    margin: 45px 0 0 0;
 }
 
 .staffList{
@@ -28,6 +52,8 @@ section{
 
 .staffTitle{
     display: flex;
+    justify-content: center;
+    align-items: center;
     height: 40px;
     background: #fff;
     width: 100%;
@@ -39,7 +65,8 @@ section{
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100px;    border-top: 1px solid #f2f2f2;
+    height: 100px;    
+    border-top: 1px solid #f2f2f2;
     background: #fff;
 }
 
@@ -66,15 +93,14 @@ section{
     background: #fff;
     width: 100px;
     height: 40px;
-
+    margin: 5px;
 }
-
 
 .staffFormCheck{
     display: flex;
 }
 
-.staffFormCheck label{
+.staffFormCheckLabel{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -82,15 +108,15 @@ section{
     width: 100px;
     height: 100px;
     border-top: 1px solid #f2f2f2;
+    border-radius: 10px;
+    transition: .2s;
+    margin: 5px;
 }
 
-.staffFormCheck label p{
+.staffFormCheckLabel p{
     text-align: center;
     width: 100%;
-}
-
-.staffFormCheck label input{
-    /* display: none; */
+    font-size: 12px;
 }
 
 .labelActive{
@@ -102,12 +128,16 @@ section{
     background: #77AD9D !important;
 }
 
-.labelActive input:checked .labelActive{
-    background: #77AD9D !important;
-}
-
-.staffFormCheck label:hover{
+.staffFormCheckLabel:hover{
     background: #77AD9D;
+    color: #fff;
 }
 
+.checkbox{
+    display: none;
+}
 
+.labelCheck{
+    background: #77AD9D;
+    color: #fff;
+}

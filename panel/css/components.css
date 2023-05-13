@@ -2,8 +2,8 @@ main{
     display: flex;
 }
 
-section{
-    width: calc(90% - 320px);
+.section{
+    width: calc(90% - 360px);
     height: 100px;
     padding: 0px 25px;
 }

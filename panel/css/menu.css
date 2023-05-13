@@ -1,8 +1,16 @@
 .menu{
     display: inline-block;
     width: 360px;
-    height: 100vh;
     background: #fff;
+    height: 100vh;
+    position: relative;
+}
+
+.menuUl{
+    display: inline-block;
+    height: 100%;
+    width: 360px;
+    position: fixed;
 }
 
 .menuLogo{

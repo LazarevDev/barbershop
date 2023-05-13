@@ -35,7 +35,7 @@ if(!empty($_COOKIE['login']) OR !empty($_COOKIE['password'])){
     <main>
         <?php require_once('include/menu.php'); ?>
 
-        <section class="statistic">
+        <section class="section">
             <div class="sectionTitle">
                 <h2>Статистика</h2>
             </div>

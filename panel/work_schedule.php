@@ -22,13 +22,6 @@ if(!empty($_COOKIE['login']) OR !empty($_COOKIE['password'])){
 
 
 
-
-
-
-
-
-
-
 if(isset($_POST['submit'])){
     $datetimeStart = $_POST['datetime_start'];
     $datetimeEnd = $_POST['datetime_end'];
@@ -81,10 +74,14 @@ function strip($db, $rowStaffListLogin, $timestamp){
                 return 0;
             }
         }
-
      } 
-
 }
+
+
+$montArray = ['01' => 'Янв ', '02' => 'Фев ', '03' => 'Мар ', '04' => 'Апр ', '05' => 'Май ', '06' => 'Июн ', '07' => 'Июл '
+, '08' => 'Авг ', '09' => 'Сент ', '10' => 'Окт ', '11' => 'Ноя ', '12' => 'Дек '];
+
+
 ?>
 
 <!DOCTYPE html>
@@ -93,124 +90,114 @@ function strip($db, $rowStaffListLogin, $timestamp){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/work_schedule.css">
     <title>Document</title>
-
-    <style>
-        .content{
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            width: 650px;
-            margin: 30px 0 0 0;
-        }
-
-        .block{
-            display: flex;
-            justify-content: center;
-
-            width: 100px;
-            header: 50px;
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 10px 0 0 0;
-        }
-    </style>
 </head>
 <body>
     <main>
         <?php require_once('include/menu.php'); ?>
 
-        <section class="statistic">
+        <section class="section">
             <div class="sectionTitle">
                 <h2>График работы персонала</h2>
             </div>
 
-            <form action="" method="post">
+            <div class="content">
+                <form action="" class="formContent" method="post">
 
-                <div class="formInput">
-                    <label for="">
-                        <p>Со скольки</p>
-                        <input type="time" name="datetime_start" value="08:00">
-                    </label>
+                    <div class="formInput">
+                        <label class="formInputLabel" for="">
+                            <p>Рабочий день с</p>
+                            <input type="time" name="datetime_start" value="08:00">
+                        </label>
 
-                    <label for="">
-                        <p>До скольки</p>
-                        <input type="time" name="datetime_end" value="19:00">
-                    </label>
+                        <label class="formInputLabel" for="">
+                            <p>Рабочий день до</p>
+                            <input type="time" name="datetime_end" value="19:00">
+                        </label>
 
-                    <input type="submit" name="submit" value="submit">
-                </div>
-
-
-                <div class="contentTable">
-                    <div class="staffList">
-                        <div class="staffTitle">
-                            <p>Стафф</p>
-                        </div>
-                        <?php 
-                        $queryStaffList = mysqli_query($db, "SELECT * FROM `staff` ORDER BY `id` DESC");
-                        while ($rowList = mysqli_fetch_array($queryStaffList)) { ?>
-                            <div class="staffBlock">
-                                <?php echo $rowList['name']; ?>
-                            </div>
-                        <?php } ?>
+                        <input type="submit" name="submit" class="submit" value="Выставить">
                     </div>
 
-                    <div class="contentMonth">
-                        <div class="monthContainer">
-                            <?php $t = date('t');
 
-                            for ($i=0; $i < $t; $i++) { 
-                                $date = date('m.d');
-                                $timestamp = date("m.d", strtotime("+".$i." day", strtotime($date))); ?>
-                                <div class="monthBlock">
-                                    <?php echo $timestamp; ?>
+                    <div class="contentTable">
+                        <div class="staffList">
+                            <div class="staffTitle">
+                                <p>Сотрудники</p>
+                            </div>
+                            <?php 
+                            $queryStaffList = mysqli_query($db, "SELECT * FROM `staff` ORDER BY `id` DESC");
+                            while ($rowList = mysqli_fetch_array($queryStaffList)) { ?>
+                                <div class="staffBlock">
+                                    <?php echo $rowList['name']; ?>
                                 </div>
                             <?php } ?>
                         </div>
 
-                        <div class="staffFormCheckCont">
-                            <?php $queryStaffList = mysqli_query($db, "SELECT * FROM `staff` ORDER BY `id` DESC");
-                            while ($rowStaffList = mysqli_fetch_array($queryStaffList)) {
-                                $rowStaffListLogin = $rowStaffList['login']; ?>
-                                <div class="staffFormCheck">
-                                    <?php for ($i=0; $i < $t; $i++) { 
-                                        $date = date('Y-m-d');
-                                        $timestamp = date("Y-m-d", strtotime("+".$i." day", strtotime($date)));
+                        <div class="contentMonth">
+                            <div class="monthContainer">
+                                <?php $t = date('t');
 
-                                        $arrayDateLogin = array('date' => $timestamp, 'login' => $rowStaffListLogin);
-                                        ?> 
-                                        <label <?php 
-                                            if(strip($db, $rowStaffListLogin, $timestamp) !== '0'){
-                                                if(!empty(strip($db, $rowStaffListLogin, $timestamp)[1])){
-                                                echo "class='labelActive'";
-                                                }
-                                            }
-                                            ?>
-                                            
-                                            for="<?php echo $rowStaffList['login'].$i; ?>">
-                                            <input type="checkbox" name="date[]" id="<?php echo $rowStaffListLogin.$i; ?>"  value="<?php echo $timestamp."*".$rowStaffListLogin; ?>">
+                                for ($i=0; $i < $t; $i++) { 
+                                    $date = date('m.d');
+                                    $timestamp = date("d", strtotime("+".$i." day", strtotime($date))); ?>
+                                    <div class="monthBlock">
+                                        <?php echo $montArray[date("m", strtotime("+".$i." day", strtotime($date)))]." ".$timestamp; ?>
+                                    </div>
+                                <?php } ?>
+                            </div>
 
-                                            <?php 
+                            <div class="staffFormCheckCont">
+                                <?php $queryStaffList = mysqli_query($db, "SELECT * FROM `staff` ORDER BY `id` DESC");
+                                while ($rowStaffList = mysqli_fetch_array($queryStaffList)) {
+                                    $rowStaffListLogin = $rowStaffList['login']; ?>
+                                    <div class="staffFormCheck">
+                                        <?php for ($i=0; $i < $t; $i++) { 
+                                            $date = date('Y-m-d');
+                                            $timestamp = date("Y-m-d", strtotime("+".$i." day", strtotime($date)));
+
+                                            $arrayDateLogin = array('date' => $timestamp, 'login' => $rowStaffListLogin);
+                                            ?> 
+                                            <label class="staffFormCheckLabel <?php 
                                                 if(strip($db, $rowStaffListLogin, $timestamp) !== '0'){
                                                     if(!empty(strip($db, $rowStaffListLogin, $timestamp)[1])){
-                                                        echo "<p> c ".strip($db, $rowStaffListLogin, $timestamp)[1]."</p>";
-                                                        echo "<p> до ".strip($db, $rowStaffListLogin, $timestamp)[2]."</p>";
+                                                    echo "labelActive";
                                                     }
-                                                }
-                                            ?>
-                                        </label>
-                                    <?php }  ?>
-                                </div>
-                            <?php } ?>
+                                                } ?>"
+                                                
+                                                for="<?php echo $rowStaffList['login'].$i; ?>">
+                                                <input type="checkbox" onchange="toggleCheck(this)" class="checkbox" name="date[]" id="<?php echo $rowStaffListLogin.$i; ?>"  value="<?php echo $timestamp."*".$rowStaffListLogin; ?>">
+
+                                                <div class="labelCheckText">
+                                                    <?php 
+                                                        if(strip($db, $rowStaffListLogin, $timestamp) !== '0'){
+                                                            if(!empty(strip($db, $rowStaffListLogin, $timestamp)[1])){
+                                                                echo "<p>С ".strip($db, $rowStaffListLogin, $timestamp)[1]."</p>";
+                                                                echo "<p>До ".strip($db, $rowStaffListLogin, $timestamp)[2]."</p>";
+                                                            }else{
+                                                                echo "<p>Выходной</p>";
+                                                            }
+                                                        }
+                                                    ?>
+                                                </div>
+                                            </label>
+                                        <?php }  ?>
+                                    </div>
+                                <?php } ?>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </form>
+                    </form>
+            </div>
         </section>
     </main>
+
+    <script>
+        function toggleCheck(elem) {
+            $(elem).parent().toggleClass('labelCheck')
+        }
+    </script>
 </body>
 </html>

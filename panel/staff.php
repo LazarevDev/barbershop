@@ -2,23 +2,6 @@
 require_once('../require/db.php');
 
 
-// проверка на куки 
-
-if(!empty($_COOKIE['login']) OR !empty($_COOKIE['password'])){
-
-    $loginCookie = $_COOKIE['login'];
-    $passwordCookie = $_COOKIE['password'];
-
-    $queryStaffCookie = mysqli_query($db, "SELECT * FROM `staff` WHERE `login` = '$loginCookie' and `password` = '$passwordCookie'");
-    $resultStaffCookie = mysqli_fetch_array($queryStaffCookie);   
-    
-    if(!$resultStaffCookie){
-        header('Location: login.php');
-    }
-}else{
-    header('Location: login.php');
-}
-
 
 if(isset($_POST['submit'])){
     $name = $_POST['name'];
@@ -58,7 +41,7 @@ if(isset($_POST['submit'])){
     <main>
         <?php require_once('include/menu.php'); ?>
 
-        <section class="statistic">
+        <section class="section">
             <div class="sectionTitle">
                 <h2>Добавить сотрудника</h2>
             </div>
@@ -103,7 +86,27 @@ if(isset($_POST['submit'])){
             </div>
 
             <div class="content">
+                <div class="staffContainer">
+                    <?php 
+                    $queryStaff = mysqli_query($db, "SELECT * FROM `staff`");
+                    while ($rowStaff = mysqli_fetch_array($queryStaff)) { ?>
+                        <div class="staff">
+                            <div class="staffPhoto"></div>
 
+                            <div class="staffInformation">
+                                <h2><?php echo $rowStaff['name']; ?></h2>
+                                <p><?php if($rowStaff['specialization'] == '0'){ echo "Младший брабер"; }elseif($rowStaff['specialization'] == '1'){ echo "Старший барбер"; }elseif($rowStaff['specialization'] == '2'){ echo "Администратор"; }?></p>
+                            </div>
+
+                            <div class="staffAction">
+                                <a class="staffActionEdit" href="">Редактировать</a>
+                                <a class="staffActionDelete" href="">Удалить</a>
+                            </div>
+                        </div>
+                    <?php }
+                    
+                    ?>
+                </div>
             </div>
         </section>
     </main>
