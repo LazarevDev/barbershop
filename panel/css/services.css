@@ -27,6 +27,8 @@
 }
 
 .formCategorySubmitContent{
+    display: flex;
+    align-items: center;
     width: 100%;
 }
 
@@ -43,6 +45,11 @@
 .formCategorySubmit:hover{
     background: none;
     color: #2C374D;
+}
+
+.formCategoryCancel{
+    color: red;
+    margin-left: 15px;
 }
 
 /* servicesContent */
