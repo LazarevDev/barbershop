@@ -42,6 +42,12 @@
     height: 150px;
     border-radius: 10px;
     background: #f2f2f2;
+    overflow: hidden;
+}
+
+.filePhoto img{
+    width: 100%;
+    object-fit: cover;
 }
 
 .textarea{
@@ -70,6 +76,7 @@
 .staffContainer{
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .staff{
@@ -87,6 +94,12 @@
     height: 160px;
     border-radius: 10px;
     background: #f2f2f2;
+    overflow: hidden;
+}
+
+.staffPhoto img{
+    width: 100%;
+    object-fit: cover;
 }
 
 .staffInformation{

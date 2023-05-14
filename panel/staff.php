@@ -1,29 +1,144 @@
 <?php 
 require_once('../require/db.php');
+require_once('require-panel/cookie.php');
+
+$arrayEdit = ['name' => null, 
+'login' => null, 
+'specialization' => null, 
+'telephone' => null,
+'email' => null, 
+'description' => null, 
+'salary' => null,
+'perecent' => null,
+'password' => null];
+
+if(isset($_GET['edit'])){
+    $editId = $_GET['edit'];
+
+    $queryEditStaff = mysqli_query($db, "SELECT * FROM `staff` WHERE `id` = '$editId'");
+    $resultEditStaff = mysqli_fetch_array($queryEditStaff);
+
+    $arrayEdit = ['name' => $resultEditStaff['name'], 
+    'login' => $resultEditStaff['login'], 
+    'specialization' => $resultEditStaff['specialization'], 
+    'telephone' => $resultEditStaff['telephone'],
+    'email' => $resultEditStaff['email'], 
+    'description' => $resultEditStaff['description'], 
+    'salary' => $resultEditStaff['salary'],
+    'perecent' => $resultEditStaff['perecent'],
+    'password' => $resultEditStaff['password']];
+
+    if(isset($_POST['submit'])){
+        $name = $_POST['name'];
+        $login = $_POST['login'];
+        $specialization = $_POST['specialization'];
+        $telephone = $_POST['telephone'];
+        $email = $_POST['email'];
+        $description = $_POST['description'];
+        $salary = $_POST['salary'];
+        $perecent = $_POST['perecent'];
+        $password = md5($_POST['password']);
 
 
+        $queryEditLogin = mysqli_query($db, "SELECT * FROM `staff` WHERE `id` = '$editId'");
+        $resultEditLogin = mysqli_fetch_array($queryEditLogin);
 
-if(isset($_POST['submit'])){
-    $name = $_POST['name'];
-    $login = $_POST['login'];
-    $specialization = $_POST['specialization'];
-    $telephone = $_POST['telephone'];
-    $email = $_POST['email'];
-    $description = $_POST['description'];
-    $salary = $_POST['salary'];
-    $perecent = $_POST['perecent'];
-    $photo = $_POST['photo'];
-    $password = md5($_POST['password']);
+        
+        $photo = $_FILES['photo']['name'];
+        $target = "../img/admin-photo/".$resultEditLogin['login']."/".basename($photo);
 
+        echo $photo;
 
+        if(!empty($photo)){
+            if(move_uploaded_file($_FILES['photo']['tmp_name'], $target)) {
+                $queryEditStaffPhoto = mysqli_query($db, "UPDATE `staff` SET  `photo` = '$photo' WHERE `id` = '$editId'");
+
+            }else{
+                echo "error";
+            }
+        }
             
-    $queryAddStaff = "INSERT INTO `staff` (`name`, `login`, `specialization`, `telephone`, `email`, `description`,`salary`, `perecent`, `password`) VALUES 
-    ('$name', '$login', '$specialization', '$telephone', '$email', '$description', '$salary', '$perecent', '$password')";
-    
-    $resultAddStaff = mysqli_query($db, $queryAddStaff) or die(mysqli_error($db));
+        $queryEditStaff = mysqli_query($db, "UPDATE `staff` SET 
+        `name` = '$name', 
+        `login` = '$login', 
+        `specialization` = '$specialization', 
+        `telephone` = '$telephone', 
+        `email` = '$email',
+        `description` = '$description', 
+        `salary` = '$salary', 
+        `perecent` = '$perecent',
+        `password` = '$password' WHERE `id` = '$editId'");
+        
+        // header('Location: staff.php');
+        // exit;
+    }
 
 
+}elseif(isset($_GET['delete'])){
+    $deleteId = $_GET['delete'];
+
+    $queryEditLogin = mysqli_query($db, "SELECT * FROM `staff` WHERE `id` = '$deleteId'");
+    $resultEditLogin = mysqli_fetch_array($queryEditLogin);
+
+    $loginDelete = $resultEditLogin['login'];
+    $photoDelete = $resultEditLogin['photo'];
+
+
+
+    $structure = '../img/admin-photo/'.$loginDelete;
+    unlink($structure.'/'.$photoDelete);
+    rmdir($structure);
+
+    $queryDelete = mysqli_query($db, "DELETE FROM `staff` WHERE `id` = '$deleteId'");
+
+    header('Location: staff.php');
+    exit;
+}else{
+    if(isset($_POST['submit'])){
+        $name = $_POST['name'];
+        $login = $_POST['login'];
+        $specialization = $_POST['specialization'];
+        $telephone = $_POST['telephone'];
+        $email = $_POST['email'];
+        $description = $_POST['description'];
+        $salary = $_POST['salary'];
+        $perecent = $_POST['perecent'];
+        $password = md5($_POST['password']);
+
+        // создание структуры папок
+
+        $structure = '../img/admin-photo/'.$login;
+
+        if (!mkdir($structure, 0777, true)) {
+            die('Не удалось создать директории...');
+        }
+
+        $queryAddStaff = mysqli_query($db, "INSERT INTO `staff` (`name`, `login`, `specialization`, `telephone`, `email`, `description`, `salary`, `perecent`, `password`) VALUES 
+        ('$name', '$login', '$specialization', '$telephone', '$email', '$description', '$salary', '$perecent', '$password')");
+              
+   
+        $photo = $_FILES['photo']['name'];
+        $target = "../img/admin-photo/".$login."/".basename($photo);
+
+        if(!empty($photo)){
+
+            if(move_uploaded_file($_FILES['photo']['tmp_name'], $target)) {
+                $queryAddStaffPhoto = "INSERT INTO `staff` (`photo`) VALUES ('$photo')";
+                
+                $resultAddStaff = mysqli_query($db, $queryAddStaffPhoto) or die(mysqli_error($db));
+            }else{
+                echo "error";
+            }
+        }
+
+     
+        header('Location: staff.php');
+        exit;
+    }
 }
+
+
+require_once('include/function.php');
 ?>
 
 <!DOCTYPE html>
@@ -47,36 +162,35 @@ if(isset($_POST['submit'])){
             </div>
 
             <div class="content">
-                <form action="" class="formContainer" method="post">
+                <form action="" class="formContainer" method="post" enctype="multipart/form-data">
                     <div class="formLeft">
                         <div class="formLeftPhoto">
-                            <input class="file" type="file" id="filePhoto" name="photo">
-                            <label for="filePhoto" class="filePhoto"></label>
-
+                            <input class="file" type="file" onchange="loadFile(event)" id="filePhoto" name="photo">
+                            <label for="filePhoto" id="image" class="filePhoto"><img id="output"/></label>
                             <input class="inputForm submit" type="submit" name="submit" value="Загрузить">
 
                         </div>
 
                         <div class="formLeftInput">
-                            <input class="inputForm input" type="text" name="name" placeholder="Введите имя">
-                            <input class="inputForm input" type="text" name="login" placeholder="Введите логин">
+                            <input class="inputForm input" type="text" name="name" placeholder="Введите имя" <?php edit('input', $arrayEdit['name']); ?>>
+                            <input class="inputForm input" type="text" name="login" placeholder="Введите логин" <?php edit('input', $arrayEdit['login']); ?>>
                         
-                            <select class="inputForm select" name="specialization" id="">
+                            <select class="inputForm select" name="specialization" id="" <?php edit('input', $arrayEdit['specialization']); ?>>
                                 <option value="0">Младший барбер</option>
                                 <option value="1">Старший барбер</option>
                                 <option value="2">Администратор</option>
                             </select>
 
-                            <textarea class="inputForm textarea" name="description" placeholder="Введите описание"></textarea>
+                            <textarea class="inputForm textarea" name="description" placeholder="Введите описание"><?php edit('textarea', $arrayEdit['description']); ?></textarea>
                         </div>
                     </div>
 
                     <div class="formRight">
-                        <input class="inputForm input" type="text" name="telephone" placeholder="Введите телефон">
-                        <input class="inputForm input" type="email" name="email" placeholder="Введите email">
-                        <input class="inputForm input" type="text" name="salary" placeholder="Оклад">
-                        <input class="inputForm input" type="text" name="perecent" placeholder="Процент с услуг">
-                        <input class="inputForm input" type="password" name="password" placeholder="Введите пароль">
+                        <input class="inputForm input" type="text" name="telephone" placeholder="Введите телефон" <?php edit('input', $arrayEdit['telephone']); ?>>
+                        <input class="inputForm input" type="email" name="email" placeholder="Введите email" <?php edit('input', $arrayEdit['email']); ?>>
+                        <input class="inputForm input" type="text" name="salary" placeholder="Оклад" <?php edit('input', $arrayEdit['salary']); ?>>
+                        <input class="inputForm input" type="text" name="perecent" placeholder="Процент с услуг" <?php edit('input', $arrayEdit['perecent']); ?>>
+                        <input class="inputForm input" type="password" name="password" placeholder="Введите пароль" <?php edit('input', $arrayEdit['password']); ?>>
                     </div>
                 </form>
             </div>
@@ -87,11 +201,11 @@ if(isset($_POST['submit'])){
 
             <div class="content">
                 <div class="staffContainer">
-                    <?php 
-                    $queryStaff = mysqli_query($db, "SELECT * FROM `staff`");
+                    <?php $loginCookie = $_COOKIE['login'];
+                    $queryStaff = mysqli_query($db, "SELECT * FROM `staff` ORDER BY `id` DESC");
                     while ($rowStaff = mysqli_fetch_array($queryStaff)) { ?>
                         <div class="staff">
-                            <div class="staffPhoto"></div>
+                            <div class="staffPhoto"><img src="../img/admin-photo/<?php echo $rowStaff['login']."/".$rowStaff['photo']; ?>" alt=""></div>
 
                             <div class="staffInformation">
                                 <h2><?php echo $rowStaff['name']; ?></h2>
@@ -99,16 +213,23 @@ if(isset($_POST['submit'])){
                             </div>
 
                             <div class="staffAction">
-                                <a class="staffActionEdit" href="">Редактировать</a>
-                                <a class="staffActionDelete" href="">Удалить</a>
+                                <a class="staffActionEdit" href="staff.php?edit=<?php echo $rowStaff['id']; ?>">Редактировать</a>
+                                <a class="staffActionDelete" href="staff.php?delete=<?php echo $rowStaff['id']; ?>">Удалить</a>
                             </div>
                         </div>
                     <?php }
                     
                     ?>
                 </div>
+
+                <div id="image">
+
+                </div>
             </div>
         </section>
     </main>
+    
+    <script src="js/output.js"></script>
+  
 </body>
 </html>

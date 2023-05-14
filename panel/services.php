@@ -22,7 +22,7 @@ if(isset($_GET['edit'])){
         $description = $_POST['description'];
         $receptionTime = $_POST['receptionTime'];
             
-        $querySuppliers = mysqli_query($db, "UPDATE `services` SET `title` = '$title', `category` = '$category', `price` = '$price', `description` = '$description', `reception_time` = '$receptionTime' WHERE `id` = '$editId'");
+        $queryEditService = mysqli_query($db, "UPDATE `services` SET `title` = '$title', `category` = '$category', `price` = '$price', `description` = '$description', `reception_time` = '$receptionTime' WHERE `id` = '$editId'");
         header('Location: services.php');
         exit;
     }
@@ -48,17 +48,7 @@ if(isset($_GET['edit'])){
     }
 }
 
-function edit($form, $editInput){
-    if(isset($_GET['edit'])){
-        if(!empty($editInput)){
-            if($form == 'input'){
-                echo "value='".$editInput."'";
-            }elseif($form == 'textarea'){
-                echo $editInput;
-            }
-        }
-    }
-}
+require_once('include/function.php');
 ?>
 
 <!DOCTYPE html>
