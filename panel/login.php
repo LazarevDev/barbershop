@@ -16,6 +16,9 @@ if(isset($_POST['submit'])){
         exit;
     }
 }
+
+
+echo md5('123');
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -40,7 +40,7 @@ if(!empty($_COOKIE['login']) OR !empty($_COOKIE['password'])){
         <li><a href="staff.php">Сотрудники</a></li>
         <li><a href="work_schedule.php">График работы персонала</a></li>
         <li><a href="">Клиенты</a></li>
-        <li><a href="products.phps">Товары</a></li>
+        <li><a href="products.php">Товары</a></li>
         <li><a href="">Отзывы</a></li>
         <!-- <li><a href="test.php">Тестовая страница</a></li> -->
         <li><a href="">Выход</a></li>
