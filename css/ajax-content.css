@@ -1,0 +1,112 @@
+#content{
+    padding: 20px;
+}
+
+#content h2{
+    font-size: 24px;
+    color: #424D6B; 
+}
+
+.modalContainer{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 25px 0 0 0;
+
+}
+
+.modalBlock{
+    color: #424D6B;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px 10px;
+    margin: 0 0 10px 0;
+    width: 100%;
+    background: #f2f2f2;
+    border-radius: 10px;
+}
+
+.modalBlock:nth-child(even){
+    background: #fff;
+}
+
+.modalBlockImg img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.modalBlockText p{
+    margin-left: 10px;
+}
+
+.servicesBlock{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.servicesCategoryTitle{
+    width: 100%;
+}
+
+/* ajaxBarber */
+
+.barberBtn{
+
+}
+
+/* contentMonth */
+
+.contentMonth{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    overflow-x: scroll;
+    width: 500px;
+    background: #fff;
+    margin: 10px 0 0 0;
+    height: auto;
+}
+
+.monthContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.monthBlock{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    background: #ddd;
+    border-radius: 60px;
+    margin: 0 5px;
+}
+
+.monthBlock p{
+    font-size: 12px;
+    width: 100%;
+    text-align: center;
+}
+
+.containerBLOCk{
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.timeBtn{
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}

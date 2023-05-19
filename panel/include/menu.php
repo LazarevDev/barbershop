@@ -31,7 +31,7 @@ if(!empty($_COOKIE['login']) OR !empty($_COOKIE['password'])){
 
                 <div class="menuLogoText">
                     <h2><?php echo $resultStaffCookie['name']; ?></h2>
-                    <a href="#">Вернутся на сайт</a>
+                    <a href="/index.php">Вернутся на сайт</a>
                 </div>
             </div>
         </div>

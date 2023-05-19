@@ -78,11 +78,11 @@ if(isset($_GET['edit'])){
         $count = $_POST['count'];
 
 
-        $queryAddProductsId = mysqli_query($db, "SELECT * FROM `products` ORDER BY id DESC");
+        $queryAddProductsId = mysqli_query($db, "SELECT * FROM `products` ORDER BY `id` DESC");
         $resultAddProductsId = mysqli_fetch_array($queryAddProductsId);
 
 
-        if(empty($resultAddProductsId['id'])){
+        if(!$resultAddProductsId['id']){
             $articleId = '0';
         }else{
             $articleId = $resultAddProductsId['id'];

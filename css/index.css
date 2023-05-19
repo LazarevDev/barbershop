@@ -1,0 +1,551 @@
+.titleSection h2{
+    color: #424D6B;
+    font-size: 32px;
+}
+
+.titleSection p{
+    margin: 10px 0 0 0;
+    color: #666;
+    font-size: 16px;
+}
+
+/* btnGreen */
+
+.btnGreen{
+    padding: 18px 32px;
+    background: #77AD9D;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    transition: .4s;
+}
+
+.btnGreen:hover{
+    background: #424D6B;
+}
+
+
+.btnDark{
+    padding: 18px 32px;
+    background: #424D6B;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    transition: .4s;
+}
+
+.btnDark:hover{
+    background: #77AD9D;
+}
+
+.home{
+    background: url("../img/components/home/bg.jpg")no-repeat center / cover;
+}
+
+.homeContent{
+    margin: 220px 0 220px;
+    position: relative;
+}
+
+.homeContent{
+    color: #fff;
+}
+
+.homeContent h2{
+    font-size: 52px;
+}
+
+.homeContent h2 span{
+    color: #77AD9D;
+}
+
+.homeContent p{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.spanUppercase{
+    color: #77AD9D;
+    text-transform: uppercase;
+}
+
+.homeBtnContainer{
+    display: flex;
+    align-items: center;
+    margin: 25px 0 0 0;
+}
+
+.homeBtn{
+    padding: 18px 32px;
+    background: #77AD9D;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    transition: .4s;
+}
+
+.homeBtn:hover{
+    background: #424D6B;
+}
+
+.homeBtnContainer p{
+    margin-left: 15px;
+    font-size: 14px;
+    font-weight: unset;
+}
+
+/* advantagesContent */
+
+.home .container{
+    position: relative;
+}
+
+.advantagesContent{
+    position: absolute;
+    left: 0;
+    bottom: -70px;
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - 40px);
+    background: #77AD9D;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.advantagesBlock{
+    display: flex;
+    align-items: center;
+    width: 30%;
+}
+
+.advantagesBlockText{
+    margin-left: 10px;
+    color: #fff;
+}
+
+.advantagesBlockText h3{
+    font-size: 16px;
+}
+.advantagesBlockText p{
+    font-size: 14px;
+}
+
+/* about */
+
+.about{
+    margin: 120px 0 0 0;
+}
+
+.aboutTitle h2{
+    color: #424D6B;
+    font-size: 32px;
+}
+
+.aboutContent{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.aboutText{
+    width: calc(100% - 625px);
+}
+
+.aboutText h2{
+    font-size: 32px;
+    color: #424D6B;
+}
+
+.aboutText p{
+    margin: 15px 0 0 0;
+    color: #666;
+}
+
+.aboutImg{
+    width: 600px;
+}
+
+.aboutImg img{
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* services */
+
+.services{
+    margin: 45px 0 0 0;
+}
+
+.servicesContent{
+    margin: 25px 0 0 0;
+}
+
+.serviceBlock{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 15px;
+    background: #f2f2f2;
+}
+
+.serviceBlock:nth-child(even){
+    background: #fff;
+}
+
+.serviceBlockTitle p{
+    color: #999;
+    font-size: 14px;
+}
+
+.serviceBlockTitle h3{
+    color: #424D6B;
+    font-size: 16px;
+}
+
+.serviceBlockPrice p{
+    font-weight: bold;
+    color: #424D6B;
+    font-size: 16px;
+}
+
+.serviceBtnContainer{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 25px 0 0 0;
+}
+
+/* production */
+
+.production{
+    margin: 45px 0 0 0;
+}
+
+.productionContainer{
+    display: flex;
+    justify-content: space-between;
+    margin: 35px 0 0 0;
+}
+
+.productBlock{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 280px;
+    height: 100%;
+    padding: 20px;
+    /* border: 1px solid #ddd; */
+    border-radius: 10px;
+}
+
+.productBlockImg{
+    width: 230px;
+    height: 230px;
+}
+
+.productBlockImg img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.productBlockInformation{
+    width: 100%;
+    text-align: center;
+}
+
+.productBlockInformation h3{
+    color: #666;
+    font-size: 14px;
+    font-weight: unset;
+    margin: 20px 0 0 0;
+}
+
+.productBlockInformation h2{
+    color: #77AD9D;
+    font-size: 18px;
+    margin: 5px 0 0 0;
+}
+
+.InformationBtnContainer{
+    margin: 10px 0 0 0;
+}
+
+.informationBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% - 64px);
+    color: #fff;
+    background: #77AD9D;
+    border-radius: 10px;
+    padding: 16px 32px;
+    font-weight: 500;
+}
+
+.informationBtn img{
+    margin-right: 5px;
+}
+
+
+
+.productionBtnContainer{
+    margin: 25px 0 0 0;
+    display: flex;
+    justify-content: center;
+}
+
+
+@media(min-width: 320px) and (max-width: 850px){
+    .titleSection h2{
+        font-size: 26px;
+    }
+    
+    .titleSection p{
+        font-size: 14px;
+    }
+    
+    .homeContent{
+        margin: 120px 0 200px;
+        position: relative;
+    }
+    
+    .homeContent{
+        color: #fff;
+        text-align: center;
+    }
+    
+    .homeContent h2{
+        font-size: 32px;
+    }
+    
+    .homeContent p{
+        font-size: 18px;
+        font-weight: unset;
+    }
+    
+    .homeBtnContainer{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+        margin: 25px 0 0 0;
+    }
+    
+    .homeBtnContainer p{
+        width: 100%;
+        margin: 10px 0 0 0;
+        font-size: 14px;
+        font-weight: unset;
+    }
+    
+    /* advantagesContent */
+    
+    .advantagesContent{
+        bottom: -150px;
+        width: calc(100% - 40px);
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 0 20px;
+    }
+    
+    .advantagesBlock{
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .advantagesBlockImg img{
+        width: 40px;
+    }
+    
+    .advantagesBlockText{
+        margin-left: 10px;
+        color: #fff;
+    }
+    
+    .advantagesBlockText h3{
+        font-size: 16px;
+    }
+    .advantagesBlockText p{
+        font-size: 14px;
+    }
+    
+    /* about */
+
+    .about{
+        margin: 180px 0 0 0;
+    }
+
+    .aboutContent{
+        flex-wrap: wrap;
+    }
+
+    .aboutText{
+        width: 100%;
+    }
+
+    .aboutImg{
+        margin: 25px 0 0 0;
+        width: 100%;
+    }
+
+    /* services */
+
+    .services{
+        margin: 35px 0 0 0;
+    }
+
+    .servicesContent{
+        margin: 15px 0 0 0;
+    }
+
+    .serviceBlock{
+        padding: 15px 10px;
+    }
+
+    .serviceBlockTitle p{
+        font-size: 12px;
+    }
+
+    .serviceBlockTitle h3{
+        font-size: 14px;
+    }
+
+    .serviceBlockPrice p{
+        font-size: 14px;
+    }
+
+
+
+}
+
+
+@media(min-width: 850px) and (max-width: 1020px){
+    
+    .homeContent{
+        margin: 120px 0 200px;
+        position: relative;
+    }
+    
+    
+    .homeContent h2{
+        font-size: 32px;
+    }
+    
+    .homeContent p{
+        font-size: 16px;
+        font-weight: unset;
+    }
+    
+    /* advantagesContent */
+    
+    .advantagesContent{
+        bottom: -50px;
+        width: calc(100% - 20px);
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 10px;
+    }
+    
+    .advantagesBlock{
+        width: 33%;
+        margin: 10px 0;
+    }
+
+    .advantagesBlockImg img{
+        width: 40px;
+    }
+    
+    .advantagesBlockText{
+        margin-left: 10px;
+        color: #fff;
+    }
+    
+    .advantagesBlockText h3{
+        font-size: 14px;
+    }
+    .advantagesBlockText p{
+        font-size: 12px;
+    }
+    
+    /* about */
+
+    .about{
+        margin: 120px 0 0 0;
+    }
+
+    .aboutTitle h2{
+        color: #424D6B;
+        font-size: 32px;
+    }
+
+    .aboutContent{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .aboutText{
+        width: calc(100% - 425px);
+    }
+
+    .aboutText h2{
+        font-size: 32px;
+        color: #424D6B;
+    }
+
+    .aboutText p{
+        margin: 15px 0 0 0;
+        color: #666;
+    }
+
+    .aboutImg{
+        width: 400px;
+    }
+
+    .aboutImg img{
+        width: 100%;
+        border-radius: 10px;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* hystmodalBlock */
+
+.hystmodalBlock{
+    right: 0;
+    width: 600px;
+    height: 100vh;
+    background: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -2,13 +2,14 @@
 session_start();
 require_once('../require/db.php');
 
+$rowArray[] = '';
 
+if(isset($_POST['staff'])){
+    $loginStaff = $_POST['staff'];
+}
 
-// echo $_POST['staff']." ".$_POST['service'];
-
-$loginStaff = $_POST['staff'];
 // $idService = $_POST['service'];
-
+$loginStaff = "lazarev";
 
 
 $montArray = ['01' => 'Янв ', '02' => 'Фев ', '03' => 'Мар ', '04' => 'Апр ', '05' => 'Май ', '06' => 'Июн ', '07' => 'Июл '
@@ -18,46 +19,50 @@ $montArray = ['01' => 'Янв ', '02' => 'Фев ', '03' => 'Мар ', '04' => '
 
 <div id="content">
     
-<link rel="stylesheet" href="ajax-require/style.css">
-<link rel="stylesheet" href="style.css">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
+<link rel="stylesheet" href="../css/ajax-content.css">
 
 <div class="contentMonth">
 <div class="monthContainer">
     <?php $t = date('t');
 
-
-    $queryRow = mysqli_query($db, "SELECT * FROM `work_schedule` WHERE `login` = 'lazarev' ORDER BY id DESC");
+    // Добавление в массив зарегистрированных дат 
+    $queryRow = mysqli_query($db, "SELECT * FROM `work_schedule` WHERE `login` = '$loginStaff' ORDER BY id DESC");
     while ($row = mysqli_fetch_array($queryRow)) {
         $originalDate = $row['datetime_start'];
         $newDate = date("Y-m-d", strtotime($originalDate));
         $rowArray[] = $newDate;
-    }
+}
 
+    // вывод кол-ва дней в месяц
+ 
     for ($i=0; $i < $t; $i++) { 
-    
-
         $date = date('Y-m-d');
         $timestamp = date("d", strtotime("+".$i." day", strtotime($date))); 
-        $timestampNew[] = date("Y-m-d", strtotime("+".$i." day", strtotime($date))); 
+        $timestampNew[] = date("Y-m-d", strtotime("+".$i." day", strtotime($date)));
+        
+        // схождение массивов
+        for ($id=0; $id < $t; $id++) { 
+            $result = array_intersect($rowArray, $timestampNew);
+            sort($result); 
+        }
         ?>
         <div class="monthBlock">
-            <?php 
-            // схождение массивов
-            $result = array_intersect($rowArray, $timestampNew);
+        <a class="dateBtn" <?php if(!empty($result[$i])){?>
+            href="<?php echo $result[$i]; ?>"
+        <?php } ?>>dd</a>
 
-            for ($f=0; $f < count($result); $f++) { 
-                if($rowArray[$i] == $timestampNew[$i]){?>
-                    <a class="dateBtn" href="<?php echo $result[$f]; ?>">Выборка</a>
-                <?php
-                }
-            }
-           
-            echo "<p>".$montArray[date("m", strtotime("+".$i." day", strtotime($date)))]."</p><p>".$timestamp."</p>"; ?>
+            <?php echo "<p>".$montArray[date("m", strtotime("+".$i." day", strtotime($date)))]."</p><p>".$timestamp."</p>"; ?>
         </div>
-    <?php } ?>
+    <?php }
+    
+
+      
+    
+
+    
+    ?>
     </div>
     </div>
 
@@ -71,10 +76,13 @@ $montArray = ['01' => 'Янв ', '02' => 'Фев ', '03' => 'Мар ', '04' => '
         }else{
             $time = $originalDate;
             $timeEnd = $newDate." 23:59:59";
+
         }
+        echo $time;
 
 
-        $queryRow = mysqli_query($db, "SELECT * FROM `work_schedule` WHERE `login` = 'lazarev' AND `datetime_start` = '$time' AND `datetime_end` < '$timeEnd'");
+
+        $queryRow = mysqli_query($db, "SELECT * FROM `work_schedule` WHERE `login` = '$loginStaff' AND `datetime_start` >= '$time' AND `datetime_end` <= '$timeEnd'");
         while ($row = mysqli_fetch_array($queryRow)) {
             // Узнаем кол-во рабочих часов
             $datetimeStart = new DateTime($row['datetime_start']);
@@ -83,19 +91,28 @@ $montArray = ['01' => 'Янв ', '02' => 'Фев ', '03' => 'Мар ', '04' => '
             $diffHours = $diff->h;
             $diffCount = $diffHours * 2;
         
-        echo "sd";
             if(!empty($diff->i)){
                 $diffMinutes = $diff->i;
                 $diffCount = $diffCount + 1;
             }
         
-        
+            // забронированное время;
+            $ztime = "06:00";
+
             for ($i=0; $i < $diffCount; $i++) {
                 for ($i=0; $i < $diffCount; $i++) { 
+
                     $diffMinutes = $i * 30;
         
                     $timestamp = date("H:i", strtotime("+".$diffMinutes." minutes", strtotime($row['datetime_start'])));
-                    echo "<div class='block'>".$timestamp."</div>";
+
+                    if($timestamp == $ztime){
+                    }
+
+                    ?> 
+
+                    <a href="<?php if($timestamp == $ztime){  }else{ echo $timestamp; } ?>" class='timeBtn'><?php echo $timestamp ?></a>
+                    <?php
                 }
             }
         }
@@ -113,8 +130,26 @@ $montArray = ['01' => 'Янв ', '02' => 'Фев ', '03' => 'Мар ', '04' => '
         $('.monthBlock').on('click','.dateBtn', function(e) {
             e.preventDefault();
             var time = $(this).attr('href');
+            var staff = <?php echo $loginStaff; ?>;
             $.ajax({
             url: '../ajax-require/ajax-datetime.php', 
+            type: 'POST', 
+            data: {time : time, staff : staff},
+            success: function(data){
+                jQuery('#content').html(data);
+                
+                setTimeout ("$('#content')", 500);
+            }
+            });
+        });
+    });
+
+    $(function(){
+        $('.monthBlock').on('click','.timeBtn', function(e) {
+            e.preventDefault();
+            var time = $(this).attr('href');
+            $.ajax({
+            url: '../ajax-require/insert.php', 
             type: 'POST', 
             data: {time : time},
             success: function(data){

@@ -123,17 +123,18 @@ if(isset($_GET['edit'])){
         if(!empty($photo)){
 
             if(move_uploaded_file($_FILES['photo']['tmp_name'], $target)) {
-                $queryAddStaffPhoto = "INSERT INTO `staff` (`photo`) VALUES ('$photo')";
-                
-                $resultAddStaff = mysqli_query($db, $queryAddStaffPhoto) or die(mysqli_error($db));
+                $queryAddStaff = mysqli_query($db, "INSERT INTO `staff` (`photo`, `name`, `login`, `specialization`, `telephone`, `email`, `description`, `salary`, `perecent`, `password`) VALUES 
+                ('$photo', '$name', '$login', '$specialization', '$telephone', '$email', '$description', '$salary', '$perecent', '$password')");
+                      
+                // $resultAddStaff = mysqli_query($db, $queryAddStaffPhoto) or die(mysqli_error($db));
             }else{
                 echo "error";
             }
         }
 
      
-        header('Location: staff.php');
-        exit;
+        // header('Location: staff.php');
+        // exit;
     }
 }
 
