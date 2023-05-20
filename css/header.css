@@ -35,22 +35,14 @@ header::before{
     line-height: 18px;
 }
 
-.headerLogoImg img{
-    width: 50px;
-}
-
-.headerLogoTitle{
-    margin: 0 0 0 10px;
-}
-
-.headerLogoTitle h2{
-    color: #fff;
-    font-size: 16px;
+.headerLogoTitle img{
+    height: 25px;
 }
 
 .headerLogoTitle p{
     color: #fff;
     font-size: 14px;
+    margin: 3px 0 0 0;
 }
 
 
@@ -85,22 +77,21 @@ header::before{
     align-items: center;
 }
 
-.headerBtnBlog{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.headerBtnImg{
     z-index: 3;
-    text-decoration: none;
-    background: #77AD9D;
     color: #fff;
-    border: 1px solid #77AD9D;
-    padding: 14px 28px;
-    border-radius: 10px;
-    font-weight: 500;
-    font-size: 14px;
+    margin-left: 25px;
     transition: .4s;
-    margin-right: 15px;
 }
+
+.headerBtnImg img{
+    height: 22px;
+}
+
+.headerBtnImg:hover{
+    border-bottom: 1px solid #fff;
+}
+
 
 .headerBtnBlog:hover{
     background: #424D6B;
@@ -132,8 +123,16 @@ header::before{
     display: none;
 }
 
+.headerBtnMobile{
+    padding: 15px;
+    background: #77AD9D;
+    border-radius: 5px;
+    color: #fff;
+}
 
-
+.headerBtnMobile img{
+    height: 25px;
+}
 
 
 
@@ -168,13 +167,13 @@ header::before{
     .headerLogoTitle{
         margin: 0 0 0 8px;
     }
-    
-    .headerLogoTitle h2{
-        font-size: 14px;
+
+    .headerLogoTitle img{
+        width: 150px;
     }
     
     .headerLogoTitle p{
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .headerBurger{
@@ -186,25 +185,25 @@ header::before{
     }
 
     .headerBurger span{
-        background: #5865FE;
+        background: #fff;
         position: absolute;
         left: 0;
         top: 9px;
         height: 4px;
         width: 100%;
         transition: all 0.5s ease 0s;
-        border-radius: 10px;
+        border-radius: 5px;
     }
 
     .headerBurger::before, 
     .headerBurger::after{
         content: '';
-        background: #5865FE;
+        background: #fff;
         position: absolute;
         transition: all 0.5s ease 0s;
         height: 4px;
         width: 100%;
-        border-radius: 10px;
+        border-radius: 5px;
     }
 
     .headerBurger::before{
@@ -232,15 +231,15 @@ header::before{
     .headerBurger.active span:nth-child(1){
         transition: all 0.5s ease 0s;
         transform: rotate(45deg);
-        background: #5865FE;
-        border-radius: 10px;
+        background: #fff;
+        border-radius: 5px;
     }
 
     .headerBurger.active span:nth-child(2){
         transition: all 0.5s ease 0s;
-        background: #5865FE;
+        background: #fff;
         transform: rotate(-45deg);
-        border-radius: 10px;
+        border-radius: 5px;
     }
 
     .headerMenu{
@@ -262,7 +261,7 @@ header::before{
         display: block;
         padding: 0;
         margin: 0 auto;
-        background: #fff;
+        background: #424D6B;
         width: 100%;
         height: calc(100% - 70px);
         padding: 70px 0 0 0;

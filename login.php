@@ -8,7 +8,7 @@ if(isset($_POST['submit'])){
     $queryClientCheck = mysqli_query($db, "SELECT * FROM `clients` WHERE `telephone` = '$telephone' AND `password` = '$password'");
     $resultClientCheck = mysqli_fetch_array($queryClientCheck);
 
-    if(!$resultClientCheck){
+    if($resultClientCheck){
         setcookie('telephone', $telephone);
         setcookie('password', $password);
 

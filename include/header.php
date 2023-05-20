@@ -1,4 +1,6 @@
 <?php 
+require_once('require/db.php');
+require_once('require/cookie-client-check.php');
 ?>
 
 <!DOCTYPE html>
@@ -8,6 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/components.css">
 
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/production.css">
@@ -20,14 +23,10 @@
 <header class="header">
     <div class="container">
         <div class="headerBody">
-            <a href="" class="headerLogo">
-                <div class="headerLogoImg">
-                    <img src="img/components/header/logo.png" alt="">
-                </div>
-
+            <a href="../index.php" class="headerLogo">
                 <div class="headerLogoTitle">
-                    <h2>Барбершоп</h2>
-                    <p>Липецкая область</p>
+                    <img src="../img/components/header/logo.png" alt="">
+                    <p>123456, Г. Липецк, московская улица, дом 789</p>
                 </div>
             </a>
             
@@ -40,20 +39,31 @@
                 <ul class="headerList">
                     <li><a href="#home" class="headerLink">Главная</a></li>
                     <li><a href="#cases" class="headerLink">О нас</a></li>
-                    <li><a href="#service" class="headerLink">Продукция</a></li>
-                    <li><a href="#footer" class="headerLink">Услуги</a></li>
+                    <li><a href="#service" class="headerLink">Услуги</a></li>
+                    <li><a href="#footer" class="headerLink">Товары</a></li>
 
                     <div class="headerBtnContainerMobile">
-                        <a href="#" class="headerBtnBlog">Блог</a>
-                        <a href="#" class="headerBtnContacts">Контакты</a>
+                       <?php 
+                       if(!empty($cookieTelephone)){?>
+                            <a href="basket.php" class="headerBtnMobile"><img src="../img/components/header/bask.png" alt=""> Корзина</a>
+                            <a href="profile.php" class="headerBtnMobile"><img src="../img/components/header/user.png" alt=""> Профиль</a> 
+                       <?php }else{ ?>
+                            <a href="login.php" class="headerBtnMobile"><img src="../img/components/header/user.png" alt=""> Войти</a> 
+                       <?php } ?>
                     </div>
                 </ul>
             </nav>
 
             <div class="headerBtnContainer">
-                <a href="#" class="headerBtnBlog">Войти</a>
-                <!-- <a href="#" class="headerBtnContacts">Контакты</a> -->
+                <?php if(!empty($cookieTelephone)){?>
+                    <a href="basket.php" class="headerBtnImg"><img src="../img/components/header/bask.png" alt=""> Корзина</a>
+                    <a href="profile.php" class="headerBtnImg"><img src="../img/components/header/user.png" alt=""> Профиль</a>
+                <?php }else{ ?>
+                    <a href="login.php" class="headerBtnImg"><img src="../img/components/header/user.png" alt=""> Войти</a> 
+                <?php } ?>
             </div>
         </div>
     </div>
 </header>
+
+<script src="../js/menu.js"></script>

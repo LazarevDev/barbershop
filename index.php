@@ -1,6 +1,5 @@
 <?php 
 include_once('include/header.php'); 
-require_once('require/db.php');
 
 
 ?>
@@ -131,9 +130,8 @@ require_once('require/db.php');
                         <h2><?php echo $rowProduct['price']; ?> Руб.</h2>
 
                         <div class="InformationBtnContainer">
-                            <a href="" class="informationBtn">
-                                <img src="img/components/products/bask.png" alt="">
-                                <p>В корзину</p>
+                            <a href="product.php?id=<?php echo $rowProduct['id']; ?>" class="informationBtn">
+                                <p>Перейти</p>
                             </a>
                         </div>
 
