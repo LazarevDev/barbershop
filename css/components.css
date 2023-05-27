@@ -39,3 +39,10 @@
 .btnDark:hover{
     background: #77AD9D;
 }
+
+
+@media(min-width: 320px) and (max-width: 550px){
+    .titleSection{
+        text-align: center;
+    }
+}

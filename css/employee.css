@@ -1,0 +1,285 @@
+.employeeContent{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 120px 0 120px 0;
+}
+
+.employeeContentLeft{
+    width: 280px;
+}
+
+.employeePhoto img{
+    height: 220px;
+    width: 220px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.employeeName{
+    width: 100%;
+}
+
+.employeeName h2{
+    font-size: 24px;
+    color: #333;
+}
+
+.employeeName p{
+    color: #999;
+    font-size: 16px;
+}
+
+/* employeeContentRight */
+
+.employeeContentRight{
+    width: calc(100% - 280px);
+}
+
+.employeeDescription{
+    margin: 25px 0 0 0;
+}
+
+.employeeDescription h2{
+    font-size: 24px;
+    color: #333;
+}
+
+.employeeDescription p{
+    margin: 10px 0 0 0;
+    font-size: 16px;
+    color: #666;
+}
+
+
+
+
+
+
+
+
+
+.employeeReviews{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 25px 0 0 0;
+}
+
+.employeeReviews h2{
+    font-size: 24px;
+    color: #333;
+}
+
+/* employeeReviewsMsg */
+
+.employeeReviewsMsg{
+    padding: 20px;
+    background: #f2f2f2;
+    border-radius: 10px;
+    width: 100%;
+    margin: 25px 0 0 0;
+    text-align: center;
+    color: #666;
+}
+
+.employeeReviewsMsg a{
+    color: #77AD9D;
+}
+
+.employeeReviews form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.ratingArea{
+    margin: 15px 0 0 0;
+}
+
+.ratingArea:not(:checked) > input {
+	display: none;
+}
+.ratingArea:not(:checked) > label {
+	float: right;
+	width: 42px;
+	padding: 0;
+	cursor: pointer;
+	font-size: 32px;
+	line-height: 32px;
+	color: lightgrey;
+}
+.ratingArea:not(:checked) > label:before {
+	content: '★';
+}
+.ratingArea > input:checked ~ label {
+	color: gold;
+}
+.ratingArea:not(:checked) > label:hover,
+.ratingArea:not(:checked) > label:hover ~ label {
+	color: gold;
+}
+.ratingArea > input:checked + label:hover,
+.ratingArea > input:checked + label:hover ~ label,
+.ratingArea > input:checked ~ label:hover,
+.ratingArea > input:checked ~ label:hover ~ label,
+.ratingArea > label:hover ~ input:checked ~ label {
+	color: gold;
+}
+.ratingArea > label:active {
+	position: relative;
+}
+
+.employeeTextarea{
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: 100%;
+    height: 150px;
+    border-radius: 10px;
+    margin: 25px 0 0 0;
+    resize: vertical;
+}
+
+.submit{
+    display: flex;
+    padding: 14px 28px;
+    background: #77AD9D;
+    border-radius: 10px;
+    color: #fff;
+    margin: 15px 0 0 0;
+    transition: .4s;
+}
+
+.submit:hover{
+    background: #7ac0ab;
+}
+
+
+/* employeeReviewsContent */
+
+
+.reviewsBlock{
+    margin: 25px 0 0 0;
+}
+
+.reviewsBlock h2{
+    color: #333;
+    font-size: 20px;
+}
+
+.ratingResult{
+    margin: 2px 0 0 0;
+}
+
+.ratingResult span {
+	padding: 0;
+	font-size: 24px;
+	margin: 0 2px;
+	line-height: 1;
+	color: lightgrey;
+}
+.ratingResult > span:before {
+	content: '★';
+}
+.ratingResult > span.ratingResultActive {
+	color: gold;
+}
+
+.reviewsBlock p{
+    color: #999;
+    margin: 10px 0 0 0;
+}
+
+/* responseReview */
+
+.responseReview{
+    margin: 20px 0 0 20px;
+    background: #f2f2f2;
+    border-radius: 10px;
+}
+
+.responseReviewHeader{
+    padding: 10px;
+}
+
+.responseReviewHeader h2{
+    color: #333;
+    font-size: 18px;
+}
+
+.responseReviewFooter{
+    padding: 10px;
+    background: #fafafa;
+    border-radius: 10px;
+}
+
+.responseReviewFooter p{
+    font-size: 16px;
+    color: #999;
+}
+
+@media(min-width: 320px) and (max-width: 550px){
+    .employeeContent{
+        margin: 90px 0 0 0;
+    }
+    
+    .employeeContentLeft{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .employeeName{
+        text-align: center;
+    }
+    
+    /* employeeContentRight */
+    
+    .employeeContentRight{
+        width: 100%;
+    }
+    
+    /* employeeReviewsContent */
+    
+    .reviewsBlock{
+        margin: 25px 0 0 0;
+    }
+
+    .reviewsBlock p{
+        font-size: 14px;
+    }
+
+    .ratingResultContainer p{
+        font-size: 12px;
+    }
+    
+    .reviewsBlock h2{
+        font-size: 16px;
+    }
+    
+    .ratingResult{
+        margin: 1px 0 0 0;
+    }
+    
+    .ratingResult span {
+        font-size: 20px;
+        margin: 0 1px;
+        line-height: auto;
+    }
+   
+    /* responseReview */
+    
+    .responseReviewHeader{
+        padding: 10px;
+    }
+    
+    .responseReviewHeader h2{
+        color: #333;
+        font-size: 16px;
+    }
+    
+    .responseReviewFooter p{
+        font-size: 14px;
+    }
+    
+}

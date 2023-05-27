@@ -11,7 +11,7 @@ include_once('include/header.php');
     <div class="container">
         <div class="homeContent">
             <h2>Место для настоящих <span>мужчин</span></h2>
-            <p>Запишись на стрижку в барбершоп - <span class="spanUppercase">Со скидкой 20%</span></p>
+            <p>Запишись на первую стрижку в барбершоп - <span class="spanUppercase">Со скидкой 20%</span></p>
 
             <div class="homeBtnContainer">
                 <a data-hystmodal="#myModal" class="btnGreen homeBtn" href="">Онлайн запись</a> <p>*акция действует на первое посещение. <br> На товары данная акция не распространяется.</p>
@@ -147,6 +147,26 @@ include_once('include/header.php');
     </div>
 </section>
 
+<section class="staff">
+    <div class="container">
+        <div class="titleSection">
+            <h2>Наши сотрудники</h2>
+        </div>
+
+        <div class="staffContainer">
+            <?php 
+            $queryStaff = mysqli_query($db, "SELECT * FROM `staff` WHERE `specialization` != '2' AND RAND() LIMIT 4");
+            while ($rowStaff = mysqli_fetch_array($queryStaff)) { ?>
+                <a href="employee.php?id=<?php echo $rowStaff['id']; ?>" class="staffBlock">
+                    <div class="staffImg"><img src="img/admin-photo/<?php echo $rowStaff['login']."/".$rowStaff['photo']; ?>" alt=""></div>
+                    <div class="staffName"><h2><?php echo $rowStaff['name']; ?></h2></div>
+                </a>
+            <?php }
+            ?>
+        </div>
+    </div>
+</section>
+
 
 
 
@@ -182,7 +202,7 @@ include_once('include/header.php');
                     </div>
                 </div>
 
-<?php require_once('ajax-require/ajax-service.php'); ?>
+                <?php require_once('ajax-require/ajax-service.php'); ?>
             </div>
         </div>
    </div>

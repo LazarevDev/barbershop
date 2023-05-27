@@ -40,7 +40,7 @@
     display: flex;
     width: 150px;
     height: 150px;
-    border-radius: 10px;
+    border-radius: 50%;
     background: #f2f2f2;
     overflow: hidden;
 }
@@ -92,7 +92,7 @@
     justify-content: center;
     width: 160px;
     height: 160px;
-    border-radius: 10px;
+    border-radius: 50%;
     background: #f2f2f2;
     overflow: hidden;
 }

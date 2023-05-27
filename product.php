@@ -28,7 +28,7 @@ if(isset($_GET['id'])){
                 </div>
 
                 <div class="productInfoBtnContainer">
-                        <a href="#" class="btnBasket">
+                        <a href="basket.php?add=<?php echo $resultProduct['id']; ?>" class="btnBasket">
                             <img src="img/components/products/bask.png" alt="">
                             В корзину
                         </a>
