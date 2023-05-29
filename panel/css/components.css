@@ -22,3 +22,51 @@ main{
     margin: 25px 0 0 0;
     border-radius: 10px;
 }
+
+/* table */
+
+.table{
+	width: 100%;
+	margin-bottom: 20px;
+    text-align: center;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table th {
+    color: #999;
+	font-weight: unset;
+    padding: 15px 0;
+}
+
+.table td{
+    color: #666;
+	padding: 20px 10px;
+}
+
+.table td a{
+    color: red;
+    margin: 0 5px;
+    font-size: 12px;
+}
+
+.table tbody tr:nth-child(odd){
+	background: #fff;
+}
+
+.table tbody tr:nth-child(even){
+	background: #F7F7F7;
+}
+
+.table tbody tr:hover{
+	background: #ebebeb;
+}
+
+.status{
+    background: #77AD9D;
+    padding: 10px;
+    border-radius: 3px;
+    font-size: 10px;
+    color: #fff;
+}

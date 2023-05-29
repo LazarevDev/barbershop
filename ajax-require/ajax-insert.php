@@ -20,22 +20,17 @@ if(isset($_GET['time'])){
     }
 
     $date = date('Y-m-d H:i:s');
-    $title = $idCheque."-".$date;
-
-
-    $queryInsertCheque = mysqli_query($db, "INSERT INTO `cheque` (`title`, `client`, `datetime`) VALUES ('$title', '$telephone', '$time')") or die(mysqli_error($queryInsertCheque));
-
-    $queryService = mysqli_query($db, "SELECT * FROM `services` WHERE `id` = '$service'");
-    $resultQueryService = mysqli_fetch_array($queryService);
-    $price = $resultQueryService['price'];
     $idCheque += 1;
 
-    $queryInsertChequeInfo = mysqli_query($db, "INSERT INTO `cheque_info` (`title`, `price`, `staff`, `id_cheque`) VALUES ('$service', '$price', '$staff', '$idCheque')");
+    $title = $idCheque."-".$date;
+
+    $queryInsertCheque = mysqli_query($db, "INSERT INTO `cheque` (`title`, `client`, `datetime`) VALUES ('$title', '$telephone', '$date')") or die(mysqli_error($queryInsertCheque));
+    $queryInsertChequeInfo = mysqli_query($db, "INSERT INTO `cheque_info` (`id_service`, `staff`, `id_cheque`, `datetime`) VALUES ('$service', '$staff', '$idCheque', '$time')") or die(mysqli_error($queryInsertChequeInfo));
 
 }
 
-session_destroy();
-header('Location: ../index.php');
-exit;
+// session_destroy();
+// header('Location: ../index.php');
+// exit;
 
 ?>

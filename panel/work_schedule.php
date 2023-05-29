@@ -128,7 +128,7 @@ $montArray = ['01' => 'Янв ', '02' => 'Фев ', '03' => 'Мар ', '04' => '
                                 <p>Сотрудники</p>
                             </div>
                             <?php 
-                            $queryStaffList = mysqli_query($db, "SELECT * FROM `staff` ORDER BY `id` DESC");
+                            $queryStaffList = mysqli_query($db, "SELECT * FROM `staff` WHERE `specialization` != '2' ORDER BY `id` DESC");
                             while ($rowList = mysqli_fetch_array($queryStaffList)) { ?>
                                 <div class="staffBlock">
                                     <?php echo $rowList['name']; ?>
@@ -150,7 +150,7 @@ $montArray = ['01' => 'Янв ', '02' => 'Фев ', '03' => 'Мар ', '04' => '
                             </div>
 
                             <div class="staffFormCheckCont">
-                                <?php $queryStaffList = mysqli_query($db, "SELECT * FROM `staff` ORDER BY `id` DESC");
+                                <?php $queryStaffList = mysqli_query($db, "SELECT * FROM `staff` WHERE `specialization` != '2' ORDER BY `id` DESC");
                                 while ($rowStaffList = mysqli_fetch_array($queryStaffList)) {
                                     $rowStaffListLogin = $rowStaffList['login']; ?>
                                     <div class="staffFormCheck">

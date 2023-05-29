@@ -2,146 +2,14 @@
 require_once('../require/db.php');
 require_once('require-panel/cookie.php');
 
-$arrayEdit = ['name' => null, 
-'login' => null, 
-'specialization' => null, 
-'telephone' => null,
-'email' => null, 
-'description' => null, 
-'salary' => null,
-'perecent' => null,
-'password' => null];
-
-if(isset($_GET['edit'])){
-    $editId = $_GET['edit'];
-
-    $queryEditStaff = mysqli_query($db, "SELECT * FROM `staff` WHERE `id` = '$editId'");
-    $resultEditStaff = mysqli_fetch_array($queryEditStaff);
-
-    $arrayEdit = ['name' => $resultEditStaff['name'], 
-    'login' => $resultEditStaff['login'], 
-    'specialization' => $resultEditStaff['specialization'], 
-    'telephone' => $resultEditStaff['telephone'],
-    'email' => $resultEditStaff['email'], 
-    'description' => $resultEditStaff['description'], 
-    'salary' => $resultEditStaff['salary'],
-    'perecent' => $resultEditStaff['perecent'],
-    'password' => $resultEditStaff['password']];
-
-    if(isset($_POST['submit'])){
-        $name = $_POST['name'];
-        $login = $_POST['login'];
-        $specialization = $_POST['specialization'];
-        $telephone = $_POST['telephone'];
-        $email = $_POST['email'];
-        $description = $_POST['description'];
-        $salary = $_POST['salary'];
-        $perecent = $_POST['perecent'];
-        $password = md5($_POST['password']);
-
-
-        $queryEditLogin = mysqli_query($db, "SELECT * FROM `staff` WHERE `id` = '$editId'");
-        $resultEditLogin = mysqli_fetch_array($queryEditLogin);
-
-        
-        $photo = $_FILES['photo']['name'];
-        $target = "../img/admin-photo/".$resultEditLogin['login']."/".basename($photo);
-
-        echo $photo;
-
-        if(!empty($photo)){
-            if(move_uploaded_file($_FILES['photo']['tmp_name'], $target)) {
-                $queryEditStaffPhoto = mysqli_query($db, "UPDATE `staff` SET  `photo` = '$photo' WHERE `id` = '$editId'");
-
-            }else{
-                echo "error";
-            }
-        }
-            
-        $queryEditStaff = mysqli_query($db, "UPDATE `staff` SET 
-        `name` = '$name', 
-        `login` = '$login', 
-        `specialization` = '$specialization', 
-        `telephone` = '$telephone', 
-        `email` = '$email',
-        `description` = '$description', 
-        `salary` = '$salary', 
-        `perecent` = '$perecent',
-        `password` = '$password' WHERE `id` = '$editId'");
-        
-        header('Location: staff.php');
-        exit;
-    }
-
-
-}elseif(isset($_GET['delete'])){
+if(isset($_GET['delete'])){
     $deleteId = $_GET['delete'];
 
-    $queryEditLogin = mysqli_query($db, "SELECT * FROM `staff` WHERE `id` = '$deleteId'");
-    $resultEditLogin = mysqli_fetch_array($queryEditLogin);
+    $queryDelete = mysqli_query($db, "DELETE FROM `clients` WHERE `id` = '$deleteId'");
 
-    $loginDelete = $resultEditLogin['login'];
-    $photoDelete = $resultEditLogin['photo'];
-
-
-
-    $structure = '../img/admin-photo/'.$loginDelete;
-    unlink($structure.'/'.$photoDelete);
-    rmdir($structure);
-
-    $queryDelete = mysqli_query($db, "DELETE FROM `staff` WHERE `id` = '$deleteId'");
-
-    header('Location: staff.php');
+    header('Location: clients.php');
     exit;
-}else{
-    if(isset($_POST['submit'])){
-        $name = $_POST['name'];
-        $login = $_POST['login'];
-        $specialization = $_POST['specialization'];
-        $telephone = $_POST['telephone'];
-        $email = $_POST['email'];
-        $description = $_POST['description'];
-        $salary = $_POST['salary'];
-        $perecent = $_POST['perecent'];
-        $password = md5($_POST['password']);
-
-        // создание структуры папок
-
-        $structure = '../img/admin-photo/'.$login;
-
-        if (!mkdir($structure, 0777, true)) {
-            die('Не удалось создать директории...');
-        }
-
-    
-   
-        $photo = $_FILES['photo']['name'];
-        $target = "../img/admin-photo/".$login."/".basename($photo);
-
-        if(!empty($photo)){
-
-            if(move_uploaded_file($_FILES['photo']['tmp_name'], $target)) {
-                $queryAddStaff = mysqli_query($db, "INSERT INTO `staff` (`photo`, `name`, `login`, `specialization`, `telephone`, `email`, `description`, `salary`, `perecent`, `password`) VALUES 
-                ('$photo', '$name', '$login', '$specialization', '$telephone', '$email', '$description', '$salary', '$perecent', '$password')");
-                      
-                // $resultAddStaff = mysqli_query($db, $queryAddStaffPhoto) or die(mysqli_error($db));
-            }else{
-                echo "error";
-            }
-        }else{
-            $queryAddStaff = mysqli_query($db, "INSERT INTO `staff` (`name`, `login`, `specialization`, `telephone`, `email`, `description`, `salary`, `perecent`, `password`) VALUES 
-            ('$name', '$login', '$specialization', '$telephone', '$email', '$description', '$salary', '$perecent', '$password')");
-                  
-        }
-
-     
-        header('Location: staff.php');
-        exit;
-    }
 }
-
-
-require_once('include/function.php');
 ?>
 
 <!DOCTYPE html>
@@ -176,41 +44,30 @@ require_once('include/function.php');
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Сергей</td>
-                            <td>89042988362</td>
-                            <td>lazarev.w3b@yandex.ru</td>
-                            <td>27.05.2023</td>
-                            <td>20.05.2023</td>
-                            <td><a href="clients.php?id=">Удалить</a></td>
-                        </tr>
+                        <?php 
+                        
+                        $queryRowClients = mysqli_query($db, "SELECT * FROM `clients` ORDER BY `id` DESC");
+                        while ($rowClients = mysqli_fetch_array($queryRowClients)) {
+                            $rowClient = $rowClients['telephone'];
+                            $queryCheque = mysqli_query($db, "SELECT * FROM `cheque` LEFT JOIN `cheque_info` ON cheque.id = cheque_info.id_cheque WHERE cheque.client = '$rowClient' AND cheque_info.id_product is null ORDER BY cheque.id DESC");
+                            $resultCheque = mysqli_fetch_array($queryCheque);
 
-                        <tr>
-                            <td>Сергей</td>
-                            <td>89042988362</td>
-                            <td>lazarev.w3b@yandex.ru</td>
-                            <td>27.05.2023</td>
-                            <td>20.05.2023</td>
-                            <td>Удалить</td>
-                        </tr>
-
-                        <tr>
-                            <td>Сергей</td>
-                            <td>89042988362</td>
-                            <td>lazarev.w3b@yandex.ru</td>
-                            <td>27.05.2023</td>
-                            <td>20.05.2023</td>
-                            <td>Удалить</td>
-                        </tr>
-
-                        <tr>
-                            <td>Сергей</td>
-                            <td>89042988362</td>
-                            <td>lazarev.w3b@yandex.ru</td>
-                            <td>27.05.2023</td>
-                            <td>20.05.2023</td>
-                            <td>Удалить</td>
-                        </tr>
+                            if(!$resultCheque['datetime']){
+                                $tableDatetime = '';
+                            }else{
+                                $tableDatetime = $resultCheque['datetime'];
+                            }
+                            
+                            ?>
+                            <tr>
+                                <td><?php echo $rowClients['name']; ?></td>
+                                <td><?php echo $rowClients['telephone']; ?></td>
+                                <td><?php echo $rowClients['email']; ?></td>
+                                <td><?php echo $tableDatetime; ?></td>
+                                <td><?php echo $rowClients['date']; ?></td>
+                                <td><a href="clients.php?delete=<?php echo $rowClients['id']; ?>">Удалить</a></td>
+                            </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
 

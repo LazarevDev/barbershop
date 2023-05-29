@@ -12,6 +12,7 @@
     width: 360px;
     position: fixed;
     background: #fff;
+    overflow-x: scroll;
 }
 
 .menuLogo{
