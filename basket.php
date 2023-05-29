@@ -70,7 +70,7 @@ if(isset($_POST['submit'])){
 $queryCountProducts = mysqli_query($db, "SELECT COUNT(*) `id` FROM `basket` WHERE `client` = '$cookieTelephone'");
 $resultCountProducts = mysqli_fetch_array($queryCountProducts);
 
-$queryPriceProducts = mysqli_query($db, "SELECT SUM(`price`) price FROM `basket` LEFT JOIN `products` ON products.id = basket.id_product WHERE basket.client = '$cookieTelephone'");
+$queryPriceProducts = mysqli_query($db, "SELECT SUM(`price`) price, SUM(`count_basket`) count_basket FROM `basket` LEFT JOIN `products` ON products.id = basket.id_product WHERE basket.client = '$cookieTelephone'");
 $resultPriceProducts = mysqli_fetch_array($queryPriceProducts);
 
 ?>
@@ -122,8 +122,8 @@ $resultPriceProducts = mysqli_fetch_array($queryPriceProducts);
                     </div>
 
                     <div class="basketInfoText">
-                        <p>Кол-во товара: <?php echo $resultCountProducts['id']; ?></p>
-                        <p>На сумму: <?php if($resultPriceProducts['price']){ echo $resultPriceProducts['price']; }else{ echo "0"; } ?> Руб.</p>
+                        <p>Кол-во товара: <?php echo $resultPriceProducts['count_basket']; ?></p>
+                        <p>На сумму: <?php if($resultPriceProducts['price']){ echo $resultPriceProducts['count_basket'] * $resultPriceProducts['price']; }else{ echo "0"; } ?> Руб.</p>
                     </div>
 
                     <div class="basketBtnContainer">

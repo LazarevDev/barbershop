@@ -31,8 +31,6 @@ if(isset($_POST['submit'])){
 
     // Разделение date на части
 
-
-
     for ($i=0; $i < count($date); $i++) {
         $arrayTitle = array('date', 'login');
         $data = array_combine($arrayTitle, explode("*", $date[$i]));
@@ -43,13 +41,47 @@ if(isset($_POST['submit'])){
 
         $queryAddWorkSchedule = "INSERT INTO `work_schedule` (`datetime_start`, `datetime_end`, `login`) VALUES ('$newDatetimeStart', '$newDatetimeEnd', '$login')";
         $resultAddStaff = mysqli_query($db, $queryAddWorkSchedule) or die(mysqli_error($db));
+
+        header('Location: work_schedule.php');
     }
+}
+
+if(isset($_POST['submitDelete'])){
+    $date = $_POST['date'];
+
+    for ($i=0; $i < count($date); $i++) {
+        $arrayTitle = array('date', 'login');
+        $data[] = array_combine($arrayTitle, explode("*", $date[$i]));
+
+        $loginDelete = $data[$i]['login'];
+        $dateDelete = $data[$i]['date'];
+
+        $queryDatetime = mysqli_query($db, "SELECT * FROM `work_schedule` WHERE `login` = '$loginDelete' ORDER BY `id` DESC");
+        while($rowDatetime = mysqli_fetch_array($queryDatetime)){
+            $createDateStart = new DateTime($rowDatetime['datetime_start']);
+            $stripDate = $createDateStart->format('Y-m-d');
+
+            $createTimeStart = new DateTime($rowDatetime['datetime_start']);
+            $stripTime = $createDateStart->format('H:i:s');
+
+
+            if($stripDate == $dateDelete){
+                $dateDelete = $rowDatetime['datetime_start'];
+
+                $queryDelete = mysqli_query($db, "DELETE FROM `work_schedule` WHERE `login` = '$loginDelete' AND `datetime_start` = '$dateDelete'");
+            }
+        }
+
+
+    }
+    header('Location: work_schedule.php');
+    exit;
 }
 
 
 function strip($db, $rowStaffListLogin, $timestamp){
 
-    $queryWorkSchedule = mysqli_query($db, "SELECT * FROM `work_schedule` WHERE `login` = '$rowStaffListLogin'");
+    $queryWorkSchedule = mysqli_query($db, "SELECT * FROM `work_schedule` WHERE `login` = '$rowStaffListLogin' ORDER BY `id` DESC");
     while ($rowWorkSchedule = mysqli_fetch_array($queryWorkSchedule)) {
         $workScheduleLogin = $rowWorkSchedule['login'];
         $workScheduleStart = $rowWorkSchedule['datetime_start'];
@@ -119,6 +151,7 @@ $montArray = ['01' => 'Янв ', '02' => 'Фев ', '03' => 'Мар ', '04' => '
                         </label>
 
                         <input type="submit" name="submit" class="submit" value="Выставить">
+                        <input type="submit" name="submitDelete" class="submitDelete" value="Удалить">
                     </div>
 
 

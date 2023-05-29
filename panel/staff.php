@@ -47,8 +47,6 @@ if(isset($_GET['edit'])){
         $photo = $_FILES['photo']['name'];
         $target = "../img/admin-photo/".$resultEditLogin['login']."/".basename($photo);
 
-        echo $photo;
-
         if(!empty($photo)){
             if(move_uploaded_file($_FILES['photo']['tmp_name'], $target)) {
                 $queryEditStaffPhoto = mysqli_query($db, "UPDATE `staff` SET  `photo` = '$photo' WHERE `id` = '$editId'");
@@ -58,16 +56,29 @@ if(isset($_GET['edit'])){
             }
         }
             
-        $queryEditStaff = mysqli_query($db, "UPDATE `staff` SET 
-        `name` = '$name', 
-        `login` = '$login', 
-        `specialization` = '$specialization', 
-        `telephone` = '$telephone', 
-        `email` = '$email',
-        `description` = '$description', 
-        `salary` = '$salary', 
-        `perecent` = '$perecent',
-        `password` = '$password' WHERE `id` = '$editId'");
+        if(empty($password)){
+            $queryEditStaff = mysqli_query($db, "UPDATE `staff` SET 
+            `name` = '$name', 
+            `login` = '$login', 
+            `specialization` = '$specialization', 
+            `telephone` = '$telephone', 
+            `email` = '$email',
+            `description` = '$description', 
+            `salary` = '$salary', 
+            `perecent` = '$perecent',
+            WHERE `id` = '$editId'");
+        }else{
+            $queryEditStaff = mysqli_query($db, "UPDATE `staff` SET 
+            `name` = '$name', 
+            `login` = '$login', 
+            `specialization` = '$specialization', 
+            `telephone` = '$telephone', 
+            `email` = '$email',
+            `description` = '$description', 
+            `salary` = '$salary', 
+            `perecent` = '$perecent',
+            `password` = '$password' WHERE `id` = '$editId'");
+        }
         
         header('Location: staff.php');
         exit;
@@ -169,9 +180,12 @@ require_once('include/function.php');
                     <div class="formLeft">
                         <div class="formLeftPhoto">
                             <input class="file" type="file" onchange="loadFile(event)" id="filePhoto" name="photo">
-                            <label for="filePhoto" id="image" class="filePhoto"><img id="output"/></label>
+                            <label for="filePhoto" id="image" class="filePhoto"><img <?php if(isset($_GET['edit'])){ echo "src='../img/admin-photo/".$resultEditStaff['login']."/".$resultEditStaff['photo']."'"; } ?> id="output"/></label>
                             <input class="inputForm submit" type="submit" name="submit" value="Загрузить">
-
+                            <?php 
+                            if(isset($_GET['edit'])){?>
+                                <a href="staff.php">Отменить</a>
+                            <?php } ?>
                         </div>
 
                         <div class="formLeftInput">
@@ -193,7 +207,7 @@ require_once('include/function.php');
                         <input class="inputForm input" type="email" name="email" placeholder="Введите email" <?php edit('input', $arrayEdit['email']); ?>>
                         <input class="inputForm input" type="text" name="salary" placeholder="Оклад" <?php edit('input', $arrayEdit['salary']); ?>>
                         <input class="inputForm input" type="text" name="perecent" placeholder="Процент с услуг" <?php edit('input', $arrayEdit['perecent']); ?>>
-                        <input class="inputForm input" type="password" name="password" placeholder="Введите пароль" <?php edit('input', $arrayEdit['password']); ?>>
+                        <input class="inputForm input" type="password" name="password" placeholder="Введите пароль">
                     </div>
                 </form>
             </div>
