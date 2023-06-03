@@ -1,11 +1,59 @@
+.content{
+    margin: 120px 0 0 0;
+}
+
 .profileContent{
     background: #fafafa;
     width: 100%;
-    border-radius: 20px;
-    margin: 120px 0 0 0;
+    border-radius: 10px;
 }
 
 .profileContent h2{
     color: #333;
     font-size: 24px;
+}
+
+.formProfile{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    padding: 15px 0 15px 0;
+}
+
+.formProfile input{
+    width: 39vw;
+    border: 1px solid #ddd;
+    background: #fff;
+    padding: 15px 10px;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+.formContainer{
+    width: calc(78vw + 52px);
+}
+
+.formContainer h2{
+    margin: 15px 0 0 0;
+    font-size: 22px;
+    color: #333;
+}
+
+.formContainer input{
+    width: auto;
+    padding: 14px 28px;
+    background: #77AD9D;
+    border: 1px solid #77AD9D;
+    color: #fff;
+    transition: .4s;
+}
+
+.formContainer input:hover{
+    background: none;
+    color: #77AD9D;
+}
+
+.formContainer a{
+    margin-left: 10px;
+    color: #ff3232;
 }
