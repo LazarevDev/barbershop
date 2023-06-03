@@ -1,7 +1,5 @@
 <?php 
 include_once('include/header.php'); 
-
-
 ?>
 <link rel="stylesheet" href="css/index.css">
 <link rel="stylesheet" href="css/hystmodal.min.css">
@@ -137,8 +135,7 @@ include_once('include/header.php');
 
                     </div>
                 </div>
-            <?php }
-            ?>
+            <?php } ?>
         </div>
 
         <div class="productionBtnContainer">
@@ -161,13 +158,10 @@ include_once('include/header.php');
                     <div class="staffImg"><img src="img/admin-photo/<?php echo $rowStaff['login']."/".$rowStaff['photo']; ?>" alt=""></div>
                     <div class="staffName"><h2><?php echo $rowStaff['name']; ?></h2></div>
                 </a>
-            <?php }
-            ?>
+            <?php } ?>
         </div>
     </div>
 </section>
-
-
 
 
 <!-- modal -->

@@ -52,12 +52,11 @@ if(isset($_GET['delete'])){
                             $queryCheque = mysqli_query($db, "SELECT * FROM `cheque` LEFT JOIN `cheque_info` ON cheque.id = cheque_info.id_cheque WHERE cheque.client = '$rowClient' AND cheque_info.id_product is null ORDER BY cheque.id DESC");
                             $resultCheque = mysqli_fetch_array($queryCheque);
 
-                            if(!$resultCheque['datetime']){
+                            if(empty($resultCheque['datetime'])){
                                 $tableDatetime = '';
                             }else{
                                 $tableDatetime = $resultCheque['datetime'];
                             }
-                            
                             ?>
                             <tr>
                                 <td><?php echo $rowClients['name']; ?></td>

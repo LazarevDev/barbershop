@@ -239,9 +239,7 @@ require_once('include/function.php');
                     ?>
                 </div>
 
-                <div id="image">
-
-                </div>
+                <div id="image"></div>
             </div>
         </section>
     </main>

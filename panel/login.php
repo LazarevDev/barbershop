@@ -16,9 +16,6 @@ if(isset($_POST['submit'])){
         exit;
     }
 }
-
-
-echo md5('123');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +31,7 @@ echo md5('123');
         <div class="container">
             <div class="center">
                 <form action="" method="post" class="formLogin">
-                    <h2>Вход</h2>
+                    <h2>Вход в админпанель</h2>
                     <input type="text" name="login" placeholder="Введите логин"><br>
                     <input type="password" name="password" placeholder="Введите пароль"><br>
                     <input type="submit" class="submitLogin" name="submit" value="Войти">

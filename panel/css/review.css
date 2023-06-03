@@ -1,3 +1,141 @@
-.reviewsBlock{
-    margin: 25px 0 0 0;
+.reviewContainerBtn{
+    margin: -40px 0 0 0;
 }
+
+.reviewBtn{
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: 10px;
+    background: #424D6B;
+    color: #fff;
+    transition: .4s;
+}
+
+.reviewBtn:hover{
+    background: #353f58;
+}
+
+.reviewContent{
+    width: 100%;
+}
+
+.reviewBlock{
+    margin: 25px 0 0 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+}
+
+.reviewProductImg{
+    width: 100px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 20px;
+}
+
+
+.reviewProductImg img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.reviewBlockContent{
+    padding: 20px 10px;
+    width: calc(100% - 130px);
+}
+
+.reviewBlockContent h3{
+    font-size: 14px;
+    font-weight: unset;
+    color: #999;
+}
+
+/* responseBlock */
+
+.responseBlock{
+    background: #f2f2f2;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0 0 0;
+}
+
+.responseBlock h2{
+    font-size: 20px;
+    color: #333;
+}
+
+.responseBlock p{
+    color: #666;
+    margin: 3px 0 0 0;
+}
+
+
+/* responseForm */
+
+.responseForm{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 20px 0 0 0;
+    width: 100%;
+}
+
+.responseForm textarea{
+    border-radius: 10px;
+    width: 100%;
+    padding: 20px;
+    height: 80px;
+    resize: vertical;
+    border: 1px solid #ddd;
+}
+
+.btnFormContainer{
+    margin: 15px 0 0 0;
+}
+
+.submit{
+    background: #77AD9D;
+    padding: 16px 32px;
+    border-radius: 10px;
+    color: #fff;
+    margin-right: 10px;
+}
+
+.cancel{
+    color: red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.ratingResult{
+    margin: 2px 0 0 0;
+}
+
+.ratingResult span {
+	padding: 0;
+	font-size: 24px;
+	margin: 0 2px;
+	line-height: 1;
+	color: lightgrey;
+}
+.ratingResult > span:before {
+	content: '★';
+}
+.ratingResult > span.ratingResultActive {
+	color: gold;
+}
+

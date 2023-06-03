@@ -13,7 +13,8 @@ if(!$resultClient){
 <section class="profile">
     <div class="container">
         <div class="profileContent">
-            <h2>Сергей, добро пожаловать!</h2>
+            <h2>добро пожаловать!</h2>
+            <a href="logout.php">Выход</a>
         </div>
     </div>
 </section>

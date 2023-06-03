@@ -1,7 +1,4 @@
 <?php 
-
-// проверка на куки 
-
 if(!empty($_COOKIE['login']) OR !empty($_COOKIE['password'])){
 
     $loginCookie = $_COOKIE['login'];
@@ -16,6 +13,5 @@ if(!empty($_COOKIE['login']) OR !empty($_COOKIE['password'])){
 }else{
     header('Location: login.php');
 }
-
 
 ?>

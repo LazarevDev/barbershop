@@ -3,6 +3,7 @@ require_once('require/db.php');
 
 if(isset($_POST['submit'])){
     $telephone = $_POST['telephone'];
+    echo $telephone;
     $password = md5($_POST['password']);
 
     $queryClientCheck = mysqli_query($db, "SELECT * FROM `clients` WHERE `telephone` = '$telephone' AND `password` = '$password'");
@@ -21,22 +22,24 @@ if(isset($_POST['submit'])){
 
 }
 
+require_once('include/header.php');
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form action="" method="post">
-        <input type="text" name="telephone" placeholder="Введите телефон">
-        <input type="text" name="password" placeholder="Введите пароль">
-        <input type="submit" name="submit" value="Войти">
-        <a href="login.php">Регистрация</a>
-    </form>
-</body>
-</html>
+<link rel="stylesheet" href="panel/css/login.css">
+
+
+<section class="login">
+    <div class="container">
+        <div class="center">
+            <form action="" method="post" class="formLogin">
+                <h2>Вход</h2>
+                <input type="text" name="telephone" class="tel" placeholder="Введите телефон">
+                <input type="password" name="password" placeholder="Введите пароль">
+                <input type="submit" class="submitLogin" name="submit" value="Войти">
+                <a href="register.php">Регистрация</a>
+            </form>
+        </div>
+    </div>
+</section>
+
+<?php require_once('include/footer.php'); ?>

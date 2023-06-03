@@ -1,20 +1,21 @@
 .login{
     display: flex;
     justify-content: center;
+    margin: 80px 0 0 0;
 }
 
 .formLogin{
-    width: 300px;
+    width: 360px;
     background: #fff;
     padding: 20px 20px;
     margin: 150px 0 0 0;
-    border-top: 10px solid #0940bb;
+    border-top: 10px solid #77AD9D;
     border-radius: 10px;
 }
 
 .formLogin h2{
     font-size: 24px;
-    color: #0940bb;
+    color: #77AD9D;
 }
 
 .formLogin input{
@@ -26,8 +27,8 @@
 }
 
 .submitLogin{
-    background: #0940bb;
-    border: 1px solid #0940bb !important;
+    background: #77AD9D;
+    border: 1px solid #77AD9D !important;
     color: #fff;
     width: auto !important;
     padding: 14px 28px !important;
@@ -37,5 +38,9 @@
 
 .submitLogin:hover{
     background: none;
-    color: #0940bb;
+    color: #679c8c;
+}
+
+.formLogin a{
+    color: #222;
 }

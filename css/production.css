@@ -88,7 +88,21 @@
     /* production */
 
     .productionContainer{
+        justify-content: space-between;
+    }
+    
+    .productBlock{
+        display: flex;
         justify-content: center;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        width: 44vw;
+        padding: 5px;
+    }
+
+    .productBlockImg{
+        width: 40vw;
+        height: 40vw;
     }
 
 }

@@ -1,5 +1,4 @@
 <?php 
-
 // проверка на куки 
 
 if(!empty($_COOKIE['login']) OR !empty($_COOKIE['password'])){
@@ -43,6 +42,6 @@ if(!empty($_COOKIE['login']) OR !empty($_COOKIE['password'])){
         <li><a href="appointment.php">Записи</a></li>
         <li><a href="products.php">Товары</a></li>
         <li><a href="review.php">Отзывы</a></li>
-        <li><a href="">Выход</a></li>
+        <li><a href="logout.php">Выход</a></li>
     </ul>
 </div>

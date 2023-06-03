@@ -48,23 +48,32 @@ $montArray = ['01' => 'Янв ', '02' => 'Фев ', '03' => 'Мар ', '04' => '
         $timestamp = date("d", strtotime("+".$i." day", strtotime($date))); 
         $timestampNew[] = date("Y-m-d", strtotime("+".$i." day", strtotime($date)));
 
-        // схождение массивов
-        for ($id=0; $id < $t; $id++) { 
-            $result = array_intersect($rowArray, $timestampNew);
-            sort($result); 
-        }
+
+        // $potatoIndex = array_search($timestampNew, $result); // 3
+        // print_r($result[$potatoIndex]); //=> potato
         ?>
         <a class="monthBlock"
-        
         <?php 
-        if(!empty($result[$i])){?>
-        href="<?php echo $result[$i]; ?>"
-        <?php } ?>>
+
+        if(array_search($timestampNew[$i], $rowArray) !== false){
+            echo "href=".$timestampNew[$i];
+        }
+        ?>
+       
+        
+        >
 
 
             <?php echo "<p>".$montArray[date("m", strtotime("+".$i." day", strtotime($date)))]."</p><p>".$timestamp."</p>"; ?>
         </a>
     <?php }
+
+    // схождение массивов
+    for ($id=0; $id < $t; $id++) { 
+        $result = array_intersect($rowArray, $timestampNew);
+
+    }
+    
     ?>
     </div>
     </div>
@@ -85,7 +94,7 @@ $montArray = ['01' => 'Янв ', '02' => 'Фев ', '03' => 'Мар ', '04' => '
 
 
 
-        $queryRow = mysqli_query($db, "SELECT * FROM `work_schedule` WHERE `login` = '$loginStaff' AND `datetime_start` >= '$time' AND `datetime_end` <= '$timeEnd'");
+        $queryRow = mysqli_query($db, "SELECT * FROM `work_schedule` WHERE `login` = '$loginStaff' AND `datetime_start` >= '$time' AND `datetime_end` <= '$timeEnd' ORDER BY `id` DESC LIMIT 1");
         while ($row = mysqli_fetch_array($queryRow)) {
             // Узнаем кол-во рабочих часов
             $datetimeStart = new DateTime($row['datetime_start']);

@@ -12,14 +12,16 @@ if(isset($_GET['id'])){
 }
 
 
+
 if(isset($_POST['submit'])){
     $rating = $_POST['rating'];
     $text = $_POST['text'];
     $datetime = date("Y-m-d H:i:s");
 
+
     $ratingInsert = mysqli_query($db, "INSERT INTO `review` (`telephone`, `rating`, `text`, `staff`, `datetime`) VALUES ('$cookieTelephone', '$rating', '$text', '$staff', '$datetime')") or die(mysqli_error($ratingInsert));
    
-    header("Location: employee.php");
+    header("Location: employee.php?id=".$staffId);
     exit;
 }
 

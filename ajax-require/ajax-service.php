@@ -1,7 +1,3 @@
-
-
-
-
 <script>
     $(function(){
         $('#content').on('click','.serviceBtn', function(e) {
