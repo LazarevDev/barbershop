@@ -41,6 +41,7 @@ if(!empty($_COOKIE['login']) OR !empty($_COOKIE['password'])){
         <li><a href="clients.php">Клиенты</a></li>
         <li><a href="appointment.php">Записи</a></li>
         <li><a href="products.php">Товары</a></li>
+        <li><a href="accounting.php">Учет товаров</a></li>
         <li><a href="review.php">Отзывы</a></li>
         <li><a href="logout.php">Выход</a></li>
     </ul>
