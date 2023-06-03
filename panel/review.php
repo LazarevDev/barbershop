@@ -9,26 +9,43 @@ if(isset($_GET['page'])){
 
     if($idPage == 1){
         // Вывод всех отзывов
-        $statusReview = 'status';
-        $titleReview = "Все отзывы";
+        $status = 'status';
+        $titlePage = "Все отзывы";
     }elseif($idPage == 2){
         // Вывод ожидания
-        $statusReview = '0';
-        $titleReview = "Отзывы ожидающие действия";
+        $status = '0';
+        $titlePage = "Отзывы ожидающие действия";
     }elseif($idPage == 3){
         // Вывод одобренных
-        $statusReview = '1';
-        $titleReview = "Одобренные отзывы";
+        $status = '1';
+        $titlePage = "Одобренные отзывы";
     }elseif($idPage == 4){
         // Вывод отклоненных
-        $statusReview = '2';
-        $titleReview = "Отклоненные отзывы";
+        $status = '2';
+        $titlePage = "Отклоненные отзывы";
     }
 }else{
     header('Location: review.php?page=1');
     exit;
 }
 
+
+if(isset($_GET['pagination'])){
+    $pagination = $_GET['pagination'];
+}else $pagination = 1;
+
+$paginationCount = 10;  //количество записей для вывода
+$paginationMin = ($pagination * $paginationCount) - $paginationCount; // определяем, с какой записи нам выводить
+ 
+
+$resCount = mysqli_query($db, "SELECT COUNT(*) FROM `clients` INNER JOIN `review` ON review.telephone = clients.telephone WHERE `status` = $status");
+$rowCount = mysqli_fetch_row($resCount);
+$total = $rowCount[0]; // всего записей	
+
+$stePagination = ceil($total / $paginationCount);
+
+
+require_once('require-panel/pagination.php');
 
 if(isset($_GET['delete']) and isset($_GET['page'])){
     $deleteIdResponse = $_GET['delete'];
@@ -41,8 +58,8 @@ if(isset($_GET['delete']) and isset($_GET['page'])){
 
 }
 
-function whileReview($db, $statusReview){
-    $queryRowReviews = mysqli_query($db, "SELECT * FROM `clients` INNER JOIN `review` ON review.telephone = clients.telephone WHERE `status` = $statusReview");
+function whileReview($db, $status, $paginationMin, $paginationCount){
+    $queryRowReviews = mysqli_query($db, "SELECT * FROM `clients` INNER JOIN `review` ON review.telephone = clients.telephone WHERE `status` = $status LIMIT $paginationMin,$paginationCount");
     while ($rowReviews = mysqli_fetch_array($queryRowReviews)) { 
         $idReviews = $rowReviews['id'];
         ?>
@@ -154,20 +171,22 @@ if(isset($_POST['cancel'])){
             </div>
          -->
             <div class="sectionTitle">
-                <h2><?php  echo $titleReview; ?></h2>
+                <h2><?php  echo $titlePage; ?></h2>
+            </div>
+
+            <div class="sectionContainerBtn">
+                <a href="review.php?page=1" class="sectionBtn">Все отзывы</a>
+                <a href="review.php?page=2" class="sectionBtn">В ожидании</a>
+                <a href="review.php?page=3" class="sectionBtn">Разрешенные</a>
+                <a href="review.php?page=4" class="sectionBtn">Отклоненные</a>
             </div>
 
             <div class="content">
-                <div class="reviewContainerBtn">
-                    <a href="review.php?page=1" class="reviewBtn">Все отзывы</a>
-                    <a href="review.php?page=2" class="reviewBtn">В ожидании</a>
-                    <a href="review.php?page=3" class="reviewBtn">Разрешенные</a>
-                    <a href="review.php?page=4" class="reviewBtn">Отклоненные</a>
+                <div class="reviewContent">
+                    <?php whileReview($db, $status, $paginationMin, $paginationCount); ?>
                 </div>
 
-                <div class="reviewContent">
-                <?php whileReview($db, $statusReview); ?>
-                </div>
+                <?php paginationOutput($stePagination, $idPage); ?>
             </div>
         </section>
     </main>

@@ -70,3 +70,25 @@ main{
     font-size: 10px;
     color: #fff;
 }
+
+/* sectionContainerBtn */
+
+.sectionContainerBtn{
+    display: flex;
+    justify-content: flex-start;
+    margin: 20px 0 0 0;
+}
+
+.sectionBtn{
+    display: flex;
+    padding: 14px 28px;
+    border-radius: 10px;
+    background: #424D6B;
+    color: #fff;
+    transition: .4s;
+    margin: 0 10px 0 0;
+}
+
+.sectionBtn:hover{
+    background: #353f58;
+}

@@ -2,6 +2,24 @@
 require_once('../require/db.php');
 require_once('require-panel/cookie.php');
 
+if(isset($_GET['pagination'])){
+    $pagination = $_GET['pagination'];
+}else $pagination = 1;
+
+$paginationCount = 10;  //количество записей для вывода
+$paginationMin = ($pagination * $paginationCount) - $paginationCount; // определяем, с какой записи нам выводить
+ 
+
+$resCount = mysqli_query($db, "SELECT COUNT(*) FROM `clients`");
+$rowCount = mysqli_fetch_row($resCount);
+$total = $rowCount[0]; // всего записей	
+
+$stePagination = ceil($total / $paginationCount);
+
+$idPage = null;
+require_once('require-panel/pagination.php');
+  
+
 if(isset($_GET['delete'])){
     $deleteId = $_GET['delete'];
 
@@ -46,7 +64,7 @@ if(isset($_GET['delete'])){
                     <tbody>
                         <?php 
                         
-                        $queryRowClients = mysqli_query($db, "SELECT * FROM `clients` ORDER BY `id` DESC");
+                        $queryRowClients = mysqli_query($db, "SELECT * FROM `clients` ORDER BY `id` DESC LIMIT $paginationMin,$paginationCount");
                         while ($rowClients = mysqli_fetch_array($queryRowClients)) {
                             $rowClient = $rowClients['telephone'];
                             $queryCheque = mysqli_query($db, "SELECT * FROM `cheque` LEFT JOIN `cheque_info` ON cheque.id = cheque_info.id_cheque WHERE cheque.client = '$rowClient' AND cheque_info.id_product is null ORDER BY cheque.id DESC");
@@ -69,6 +87,8 @@ if(isset($_GET['delete'])){
                         <?php } ?>
                     </tbody>
                 </table>
+
+                <?php paginationOutput($stePagination, $idPage); ?>
 
             </div>
         </section>

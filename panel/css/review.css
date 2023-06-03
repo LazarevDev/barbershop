@@ -1,19 +1,3 @@
-.reviewContainerBtn{
-    margin: -40px 0 0 0;
-}
-
-.reviewBtn{
-    display: inline-block;
-    padding: 14px 28px;
-    border-radius: 10px;
-    background: #424D6B;
-    color: #fff;
-    transition: .4s;
-}
-
-.reviewBtn:hover{
-    background: #353f58;
-}
 
 .reviewContent{
     width: 100%;
