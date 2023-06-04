@@ -4,8 +4,13 @@ require_once('../require/db.php');
 
 $telephone = $_COOKIE['telephone'];
 
-if(isset($_GET['time'])){
+if(empty($_COOKIE['telephone'])){
+    header('Location: ../login.php');
+}else{
 
+}
+
+if(isset($_GET['time'])){
     $time = $_GET['time'];
     $staff = $_SESSION['staff'];
     $service = $_SESSION['service'];
@@ -29,8 +34,8 @@ if(isset($_GET['time'])){
 
 }
 
-// session_destroy();
-// header('Location: ../index.php');
-// exit;
+session_destroy();
+header('Location: ../index.php');
+exit;
 
 ?>

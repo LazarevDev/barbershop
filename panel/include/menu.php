@@ -1,20 +1,11 @@
 <?php 
 // проверка на куки 
+require_once('require-panel/cookie.php');
 
-if(!empty($_COOKIE['login']) OR !empty($_COOKIE['password'])){
 
-    $loginCookie = $_COOKIE['login'];
-    $passwordCookie = $_COOKIE['password'];
 
-    $queryStaffCookie = mysqli_query($db, "SELECT * FROM `staff` WHERE `login` = '$loginCookie' and `password` = '$passwordCookie'");
-    $resultStaffCookie = mysqli_fetch_array($queryStaffCookie);   
-    
-    if(!$resultStaffCookie){
-        header('Location: login.php');
-    }
-}else{
-    header('Location: login.php');
-}
+$queryMenuPhoto = mysqli_query($db, "SELECT * FROM `staff` WHERE `login` = '$loginCookie'");
+$menuPhoto = mysqli_fetch_array($queryMenuPhoto);
 ?>
 
 <link rel="stylesheet" href="css/components.css">
@@ -25,11 +16,11 @@ if(!empty($_COOKIE['login']) OR !empty($_COOKIE['password'])){
         <div class="menuLogo">
             <div class="menuLogoContainer">
                 <div class="menuLogoImg">
-                    <img src="" alt="">
+                    <img src="../img/admin-photo/<?php echo $menuPhoto['login']."/".$menuPhoto['photo']; ?>" alt="">
                 </div>
 
                 <div class="menuLogoText">
-                    <h2><?php echo $resultStaffCookie['name']; ?></h2>
+                    <h2><?php echo $resultCookie['name']; ?></h2>
                     <a href="/index.php">Вернутся на сайт</a>
                 </div>
             </div>

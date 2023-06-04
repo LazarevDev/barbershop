@@ -101,7 +101,7 @@ if(isset($_POST['submit'])){
                                 <td><?php echo $tableDatetime; ?></td>
                                 <td><div style="background: <?php echo $statusColor[$rowCheque['status']]; ?>;" class="status"><p><?php echo $statusArray[$rowCheque['status']]; ?></p></div></td>
                                 <td><?php
-                                if($rowCheque['status'] = 0){ ?>
+                                if($rowCheque['status'] == 1){ ?>
                                     <a href="profile.php?cancel=<?php echo $rowCheque['id_cheque']; ?>">Отменить</a>
                                 <?php } ?>
                                 </td>

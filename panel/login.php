@@ -1,6 +1,8 @@
 <?php
 require_once('../require/db.php');
 
+
+
 if(isset($_POST['submit'])){
     $login = $_POST['login'];
     $password = md5($_POST['password']);
@@ -12,7 +14,7 @@ if(isset($_POST['submit'])){
         setcookie('login', $login);
         setcookie('password', $password);
 
-        header('Location: statistics.php');
+        header('Location: services.php');
         exit;
     }
 }

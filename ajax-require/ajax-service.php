@@ -1,6 +1,7 @@
 <script>
+    
     $(function(){
-        $('#content').on('click','.serviceBtn', function(e) {
+        $('.hystmodalBlock').on('click','.serviceBtn', function(e) {
             e.preventDefault();
             var service = $(this).attr('href');
             $.ajax({
@@ -15,4 +16,7 @@
             });
         });
     });
+
+
+
 </script>

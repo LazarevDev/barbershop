@@ -1,6 +1,5 @@
 <?php 
 require_once('../require/db.php');
-require_once('require-panel/cookie.php');
 require_once('require-panel/pagination.php');
 
 
@@ -36,7 +35,7 @@ if(isset($_GET['pagination'])){
 }else $pagination = 1;
 
 $paginationCount = 10;  //количество записей для вывода
-$paginationMin = ($pagination * $paginationCount) - $paginationCount; // определяем, с какой записи нам выводить
+$paginationMin = ($pagination * $paginationCount) - $paginationCount; // определяем, с какой записи выводить
  
 
 $resCount = mysqli_query($db, "SELECT COUNT(*) FROM `cheque` RIGHT JOIN `cheque_info` ON cheque.id = cheque_info.id_cheque WHERE cheque_info.id_product is null AND cheque.status = $status ORDER BY cheque.id DESC");

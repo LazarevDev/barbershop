@@ -3,13 +3,13 @@ session_start();
 $service = $_POST['service'];
 $_SESSION['service'] = $service;
 
+
 require_once('../require/db.php');
 ?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 
-<div id="content">
     <h2>Выберите барбера</h2>
 
     <div class="modalContainer">
@@ -25,7 +25,6 @@ require_once('../require/db.php');
             </a>
         <?php } ?>
     </div>
-</div>
 
 
 

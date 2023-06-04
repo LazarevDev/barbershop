@@ -1,6 +1,6 @@
 <?php 
 require_once('../require/db.php');
-require_once('require-panel/cookie.php');
+
 
 if(isset($_GET['pagination'])){
     $pagination = $_GET['pagination'];

@@ -181,10 +181,10 @@ include_once('include/header.php');
 
 <link rel="stylesheet" href="css/ajax-content.css">
 
-<div class="hystmodal" id="myModal" aria-hidden="true">
+<div class="hystmodal" id="myModal">
    <div class="hystmodal__wrap">
         <div class="hystmodal__windows" role="dialog" aria-modal="true">
-         <button data-hystclose class="hystmodal__close">Закрыть</button>
+         <!-- <button data-hystclose class="hystmodal__close">Закрыть</button> -->
             <div class="hystmodalBlock">
                 <div id="content">
                     <h2>Выберите услугу</h2>
@@ -209,8 +209,12 @@ include_once('include/header.php');
                     </div>
                 </div>
 
+                <a href="index.php" class="btnModalBack">На главную</a>
+
                 <?php require_once('ajax-require/ajax-service.php'); ?>
             </div>
+            
+
         </div>
    </div>
 </div>
@@ -218,8 +222,8 @@ include_once('include/header.php');
 
 <script>
     const myModal = new HystModal({
-    linkAttributeName: "data-hystmodal",
-    // настройки (не обязательно), см. API
-});
+        linkAttributeName: "data-hystmodal",
+    });
+
 </script>
 <?php include_once('include/footer.php'); ?>

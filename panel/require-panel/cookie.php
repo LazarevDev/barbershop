@@ -1,17 +1,19 @@
 <?php 
-if(!empty($_COOKIE['login']) OR !empty($_COOKIE['password'])){
-
+if(isset($_COOKIE['login'])) {
     $loginCookie = $_COOKIE['login'];
-    $passwordCookie = $_COOKIE['password'];
+    if(isset($_COOKIE['password'])) {
+        $passwordCookie = $_COOKIE['password'];
+        $queryCookie = mysqli_query($db, "SELECT * FROM `staff` WHERE `login` = '$loginCookie' and `password` = '$passwordCookie'");
+        $resultCookie = mysqli_fetch_array($queryCookie);
 
-    $queryStaffCookie = mysqli_query($db, "SELECT * FROM `staff` WHERE `login` = '$loginCookie' and `password` = '$passwordCookie'");
-    $resultStaffCookie = mysqli_fetch_array($queryStaffCookie);   
-    
-    if(!$resultStaffCookie){
+        if($resultCookie) {
+        } else {
+            header('Location: login.php');
+        }
+    } else {
         header('Location: login.php');
     }
-}else{
+} else {
     header('Location: login.php');
 }
-
 ?>

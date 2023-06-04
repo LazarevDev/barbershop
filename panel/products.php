@@ -1,6 +1,5 @@
 <?php 
 require_once('../require/db.php');
-require_once('require-panel/cookie.php');
 
 $arrayEdit = ['title' => null, 
 'description' => null, 

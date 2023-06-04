@@ -1,6 +1,7 @@
 <?php 
 require_once('../require/db.php');
-require_once('require-panel/cookie.php');
+
+
 
 $arrayEdit = ['name' => null, 
 'login' => null, 
@@ -37,11 +38,18 @@ if(isset($_GET['edit'])){
         $description = $_POST['description'];
         $salary = $_POST['salary'];
         $perecent = $_POST['perecent'];
-        $password = md5($_POST['password']);
+
 
 
         $queryEditLogin = mysqli_query($db, "SELECT * FROM `staff` WHERE `id` = '$editId'");
         $resultEditLogin = mysqli_fetch_array($queryEditLogin);
+
+        if(empty($_POST['password'])){
+            $password = $resultEditLogin['password'];
+        }else{
+            $password = md5($_POST['password']);
+        }
+
 
         
         $photo = $_FILES['photo']['name'];
@@ -56,29 +64,17 @@ if(isset($_GET['edit'])){
             }
         }
             
-        if(empty($password)){
-            $queryEditStaff = mysqli_query($db, "UPDATE `staff` SET 
-            `name` = '$name', 
-            `login` = '$login', 
-            `specialization` = '$specialization', 
-            `telephone` = '$telephone', 
-            `email` = '$email',
-            `description` = '$description', 
-            `salary` = '$salary', 
-            `perecent` = '$perecent',
-            WHERE `id` = '$editId'");
-        }else{
-            $queryEditStaff = mysqli_query($db, "UPDATE `staff` SET 
-            `name` = '$name', 
-            `login` = '$login', 
-            `specialization` = '$specialization', 
-            `telephone` = '$telephone', 
-            `email` = '$email',
-            `description` = '$description', 
-            `salary` = '$salary', 
-            `perecent` = '$perecent',
-            `password` = '$password' WHERE `id` = '$editId'");
-        }
+     
+        $queryEditStaff = mysqli_query($db, "UPDATE `staff` SET 
+        `name` = '$name', 
+        `login` = '$login', 
+        `specialization` = '$specialization', 
+        `telephone` = '$telephone', 
+        `email` = '$email',
+        `description` = '$description', 
+        `salary` = '$salary', 
+        `perecent` = '$perecent',
+        `password` = '$password' WHERE `id` = '$editId'");
         
         header('Location: staff.php');
         exit;
@@ -189,10 +185,12 @@ require_once('include/function.php');
                         </div>
 
                         <div class="formLeftInput">
-                            <input class="inputForm input" type="text" name="name" placeholder="Введите имя" <?php edit('input', $arrayEdit['name']); ?>>
-                            <input class="inputForm input" type="text" name="login" placeholder="Введите логин" <?php edit('input', $arrayEdit['login']); ?>>
+                            <input class="inputForm input" type="text" name="name" placeholder="Введите имя" <?php edit('input', $arrayEdit['name']); ?> required>
+                            <input class="inputForm input" type="text" name="login" placeholder="Введите логин" <?php edit('input', $arrayEdit['login']); ?> required>
                         
-                            <select class="inputForm select" name="specialization" id="" <?php edit('input', $arrayEdit['specialization']); ?>>
+                            <select class="inputForm select" name="specialization" required id="" <?php edit('input', $arrayEdit['specialization']); ?>>
+                                <option selected="true" disabled="disabled">Специальность</option>
+
                                 <option value="0">Младший барбер</option>
                                 <option value="1">Старший барбер</option>
                                 <option value="2">Администратор</option>

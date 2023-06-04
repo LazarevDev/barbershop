@@ -1,6 +1,5 @@
 <?php 
 require_once('../require/db.php');
-require_once('require-panel/cookie.php');
 require_once('require-panel/pagination.php');
 
 
