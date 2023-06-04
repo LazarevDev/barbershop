@@ -4,6 +4,8 @@ include_once('include/header.php');
 <link rel="stylesheet" href="css/index.css">
 <link rel="stylesheet" href="css/hystmodal.min.css">
 <script src="js/hystmodal.min.js"></script>
+<link rel="stylesheet" href="css/staff-component.css">
+
 
 <section class="home">
     <div class="container">
@@ -139,7 +141,7 @@ include_once('include/header.php');
         </div>
 
         <div class="productionBtnContainer">
-            <a href="#" class="btnDark">Смотреть все</a>
+            <a href="all-products.php" class="btnDark">Смотреть все</a>
         </div>
     </div>
 </section>
@@ -156,9 +158,20 @@ include_once('include/header.php');
             while ($rowStaff = mysqli_fetch_array($queryStaff)) { ?>
                 <a href="employee.php?id=<?php echo $rowStaff['id']; ?>" class="staffBlock">
                     <div class="staffImg"><img src="img/admin-photo/<?php echo $rowStaff['login']."/".$rowStaff['photo']; ?>" alt=""></div>
-                    <div class="staffName"><h2><?php echo $rowStaff['name']; ?></h2></div>
+                    <div class="staffName">
+                        <h2><?php echo $rowStaff['name']; ?></h2>
+                        <p><?php if($rowStaff['specialization'] == '0'){
+                             echo "Младший барбер";
+                        }elseif($rowStaff['specialization'] == '1'){
+                            echo "Старший барбер";
+                        } ?></p>
+                    </div>
                 </a>
             <?php } ?>
+        </div>
+
+        <div class="productionBtnContainer">
+            <a href="all-staff.php" class="btnDark">Смотреть все</a>
         </div>
     </div>
 </section>

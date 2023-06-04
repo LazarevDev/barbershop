@@ -1,0 +1,82 @@
+.staffContainer{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 25px 0 0 0;
+}
+
+.staffBlock{
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+
+.staffImg{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.staffImg img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: .4s;
+}
+
+.staffBlock:hover .staffImg img{
+    transform: scale(1.1);
+}
+
+.staffName{
+    text-align: center;
+    width: 100%;
+}
+
+.staffName h2{
+    font-size: 18px;
+    margin: 5px 0 0 0;
+    color: #333;
+}
+
+.staffName p{
+    font-size: 14px;
+    color: #999;
+}
+
+@media(min-width: 320px) and (max-width: 550px){
+    /* staff */
+
+    .staffContainer{
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .staffBlock{
+        width: 150px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 35px 0 0 0;
+    }
+
+    .staffImg{
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+    .staffName h2{
+        font-size: 14px;
+    }
+}
+
+
+@media(min-width: 850px) and (max-width: 1020px){
+
+
+}

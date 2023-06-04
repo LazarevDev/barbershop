@@ -2,51 +2,21 @@
 include_once('include/header.php'); 
 require_once('require/db.php');
 
-if(isset($_GET['id'])){
-    $id = $_GET['id'];
-
-    $queryProduct = mysqli_query($db, "SELECT * FROM `products` WHERE `id` = '$id'");
-    $resultProduct = mysqli_fetch_array($queryProduct);
-}
 ?>
 
-<link rel="stylesheet" href="css/product.css">
+<link rel="stylesheet" href="css/production.css">
 
-<section class="product">
-    <div class="container">
-        <div class="productContent">
-            <div class="productImg">
-                <img src="img/products-cover/<?php echo $resultProduct['article']."/".$resultProduct['cover']; ?>" alt="">
-            </div>
-
-            <div class="productInfo">
-                <h2><?php echo $resultProduct['title']; ?></h2>
-                <h3><?php echo $resultProduct['price']; ?> руб.</h3>
-
-                <div class="productInfoDescription">
-                    <p><?php echo $resultProduct['description']; ?></p>
-                </div>
-
-                <div class="productInfoBtnContainer">
-                        <a href="basket.php?add=<?php echo $resultProduct['id']; ?>" class="btnBasket">
-                            <img src="img/components/products/bask.png" alt="">
-                            В корзину
-                        </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="production">
+<section class="sectionPage">
     <div class="container">
         <div class="titleSection">
-            <h2>Новые товары</h2>
+            <h2>Наша продукция</h2>
+            <p>Мы создаем стильные мужские прически. <br> 
+                Познакомьтесь с нашими услугами подробнее:</p>
         </div>
 
         <div class="productionContainer">
             <?php 
-            $queryProduct = mysqli_query($db, "SELECT * FROM `products` ORDER BY id DESC LIMIT 5");
+            $queryProduct = mysqli_query($db, "SELECT * FROM `products` ORDER BY id DESC");
             while ($rowProduct = mysqli_fetch_array($queryProduct)) { ?>
                 <div class="productBlock">
                     <div class="productBlockImg">
@@ -64,8 +34,7 @@ if(isset($_GET['id'])){
                         </div>
                     </div>
                 </div>
-            <?php }
-            ?>
+            <?php } ?>
         </div>
     </div>
 </section>
