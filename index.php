@@ -101,7 +101,7 @@ include_once('include/header.php');
         </div>
 
         <div class="serviceBtnContainer">
-            <a href="" class="btnGreen">Записаться сейчас</a>
+            <a data-hystmodal="#myModal" href="" class="btnGreen">Записаться сейчас</a>
         </div>
     </div>
 </section>

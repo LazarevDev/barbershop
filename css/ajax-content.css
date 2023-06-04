@@ -1,11 +1,41 @@
+/* hystmodalBlock */
+
+.hystmodalBlock{
+    right: 0;
+    width: 600px;
+    height: 90vh;
+    background: #fff;
+    overflow-y: scroll;
+    border-radius: 10px;
+}
+
+
 #content{
-    padding: 20px;
+    padding: 15px;
 }
 
 #content h2{
-    font-size: 24px;
-    color: #424D6B; 
+    font-size: 20px;
+    color: #424D6B;
 }
+
+.servicesCategoryTitle h2{
+    font-size: 18px;
+    color: #333;
+}
+
+.servicesBlock a{
+    font-size: 14px;
+    color: #424D6B;
+    transition: .4s;
+    margin: 5px 0 0 0;
+    font-weight: 500;
+}
+
+.servicesBlock a:hover{
+    color: #77AD9D;
+}
+
 
 .modalContainer{
     display: flex;
@@ -75,6 +105,7 @@
 .monthContainer{
     display: flex;
     justify-content: space-between;
+    padding: 10px 0;
 }
 
 
@@ -83,30 +114,72 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     overflow: hidden;
-    background: #ddd;
     border-radius: 60px;
     margin: 0 5px;
+    transition: .4s;
+    color: #424D6B; 
 }
 
-.monthBlock p{
+.montBlockDate{
+    background: #ddd;
+}
+
+.montBlockActive{
+    background: #77AD9D;
+    color: #fff;
+}
+
+.monthBlock:hover{
+    background: #77AD9D;
+    color: #fff;
+}
+
+.monthBlockText p{
     font-size: 12px;
     width: 100%;
     text-align: center;
 }
 
-.containerBLOCk{
+.containerBlock{
     width: 500px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    margin: 20px 0 0 0;
 }
 
 .timeBtn{
-    margin: 10px;
+    text-align: center;
+    width: 44%;
+    margin: 5px 0;
     padding: 10px;
     border-radius: 10px;
     border: 1px solid #ddd;
+    color: #424D6B;
+    transition: .4s;
+}
+
+.timeBtn:hover{
+    background: #77AD9D;
+    color: #fff;
+    border: 1px solid #77AD9D;
+
+}
+
+
+.noBlockDateTime{
+    width: 100%;
+    background: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    padding: 20px 0     ;
+}
+
+.noBlockDateTime p{
+    color: #424D6B;
 }

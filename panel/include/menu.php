@@ -34,7 +34,6 @@ if(!empty($_COOKIE['login']) OR !empty($_COOKIE['password'])){
                 </div>
             </div>
         </div>
-        <li><a href="statistics.php">Статистика</a></li>
         <li><a href="services.php">Услуги</a></li>
         <li><a href="staff.php">Сотрудники</a></li>
         <li><a href="work_schedule.php">График работы персонала</a></li>
