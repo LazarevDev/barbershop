@@ -57,3 +57,30 @@
     margin-left: 10px;
     color: #ff3232;
 }
+
+@media (min-width: 320px) and (max-width: 550px) {
+    .formProfile input{
+        width: 85vw;
+        border: 1px solid #ddd;
+        background: #fff;
+        padding: 15px 10px;
+        border-radius: 10px;
+        margin: 10px 0;
+    }
+
+    .formContainer input{
+        width: auto;
+        padding: 14px 28px;
+        background: #77AD9D;
+        border: 1px solid #77AD9D;
+        color: #fff;
+        transition: .4s;
+    }
+    
+}
+
+@media (min-width: 320px) and (max-width: 920px) {
+    .content{
+        margin: 80px 0 0 0;
+    }
+}

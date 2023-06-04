@@ -7,7 +7,7 @@ include_once('include/header.php');
 <link rel="stylesheet" href="css/staff-component.css">
 
 
-<section class="home">
+<section class="home" id="home">
     <div class="container">
         <div class="homeContent">
             <h2>Место для настоящих <span>мужчин</span></h2>
@@ -55,7 +55,7 @@ include_once('include/header.php');
     </div>
 </section>
 
-<section class="about">
+<section class="about" id="about">
     <div class="container">
         <div class="titleSection">
             <h2>О нас</h2>
@@ -224,6 +224,21 @@ include_once('include/header.php');
     const myModal = new HystModal({
         linkAttributeName: "data-hystmodal",
     });
+
+    const anchors = document.querySelectorAll('a.scroll-to')
+
+
+
+</script>
+
+<script type="text/javascript">
+    
+    $('a[href^="#"]').click(function(){ // #1
+let anchor = $(this).attr('href'); // #2
+$('html, body').animate({ // #3
+scrollTop: $(anchor).offset().top // #4
+}, 600); // #5
+});
 
 </script>
 <?php include_once('include/footer.php'); ?>

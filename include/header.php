@@ -18,6 +18,8 @@ require_once('require/cookie-client-check.php');
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
     <title>Document</title>
+
+    
 </head>
 <body>
 <header class="header">
@@ -37,10 +39,10 @@ require_once('require/cookie-client-check.php');
 
             <nav class="headerMenu">
                 <ul class="headerList">
-                    <li><a href="#home" class="headerLink">Главная</a></li>
-                    <li><a href="#cases" class="headerLink">О нас</a></li>
-                    <li><a href="#service" class="headerLink">Услуги</a></li>
-                    <li><a href="#footer" class="headerLink">Товары</a></li>
+                    <li><a href="index.php#home" class="headerLink">Главная</a></li>
+                    <li><a href="index.php#about" class="headerLink">О нас</a></li>
+                    <li><a href="index.php#service" class="headerLink">Услуги</a></li>
+                    <li><a href="index.php#products" class="headerLink">Товары</a></li>
 
                     <div class="headerBtnContainerMobile">
                        <?php 

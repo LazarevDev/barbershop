@@ -10,6 +10,7 @@ $menuPhoto = mysqli_fetch_array($queryMenuPhoto);
 
 <link rel="stylesheet" href="css/components.css">
 <link rel="stylesheet" href="css/menu.css">
+<link rel="stylesheet" href="css/pagination.css">
 
 <div class="menu">
     <ul class="menuUl">

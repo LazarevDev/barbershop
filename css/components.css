@@ -92,6 +92,24 @@
     color: #fff;
 }
 
+@media(max-width: 800px) {
+    table thead {
+        visibility: hidden;
+    }
+    table tr {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    table td {
+        width: 100%;
+        border-radius: 10px;
+    }
+    table td span {
+        display: block;
+    }
+}
+
 @media(min-width: 320px) and (max-width: 550px){
     .titleSection{
         text-align: center;

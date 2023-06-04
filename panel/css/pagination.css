@@ -1,0 +1,16 @@
+.paginationBtn{
+    display: inline-block;
+    line-height: 40px;
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    color: #fff;
+    background: #77AD9D;
+    margin: 20px 5px 0;
+    transition: .4s;
+}
+
+.paginationBtn:hover{
+    background: #424D6B;
+}

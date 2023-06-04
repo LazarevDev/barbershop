@@ -39,6 +39,12 @@ require_once('include/header.php');
                 <a href="register.php">Регистрация</a>
             </form>
         </div>
+
+        <div class="center">
+            <div class="formPolitica">
+                <p>нажимая на кнопку вы соглашаетесь на обработку <a href="documents/politica.html">персональных данных</a></p>
+            </div>
+        </div>
     </div>
 </section>
 

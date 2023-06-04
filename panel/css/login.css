@@ -44,3 +44,19 @@
 .formLogin a{
     color: #222;
 }
+
+.formPolitica{
+    margin: 10px 0 0 0;
+    background: #f2f2f2;
+    border-radius: 5px;
+    width: calc(360px - 20px);
+    padding: 20px 10px;
+}
+
+.formPolitica p{
+    color: #666;
+}
+
+.formPolitica a{
+    color: #679c8c;
+}

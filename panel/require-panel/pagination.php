@@ -39,7 +39,7 @@ function paginationOutput($stePagination, $idPage){
     }
 
     for ($idPagination = $paginationMin; $idPagination <= $paginationMax; $idPagination++){
-        echo "<a href='".$pageUrl."pagination=".$idPagination."'> Страница ".$idPagination." </a>";
+        echo "<a class='paginationBtn' href='".$pageUrl."pagination=".$idPagination."'>".$idPagination."</a>";
     }
 }
 
